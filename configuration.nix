@@ -26,8 +26,6 @@
     plymouth = {
       enable = true;
       font = "${pkgs.source-sans}/share/fonts/truetype/SourceSans3-Regular.ttf";
-      theme = "nixos-bgrt";
-      themePackages = with pkgs; [ nixos-bgrt-plymouth ];
     };
   };
 
@@ -116,17 +114,6 @@
     sudo.extraConfig = "Defaults env_reset,pwfeedback
     Defaults env_keep += \"EDITOR VIMINIT XDG_CONFIG_HOME XDG_STATE_HOME\"";
   };
-
-  systemd.user.services.bootSound = {
-    description = "Boot Sound";
-    serviceConfig = {
-      After = "pipewire.service";
-      ExecStart = "${pkgs.pipewire}/bin/pw-play /etc/nixos/Windows_Vista_7_8_10.wav";
-      Type = "oneshot";
-    };
-    wantedBy = [ "default.target" ];
-  };
-  environment.systemPackages = with pkgs; [ alsa-utils ];
   
   system.stateVersion = "24.11";
   
