@@ -79,6 +79,7 @@
         openjdk
         pyright
         python3
+        ruff
       ];
 
       programPackages = with pkgs; [
@@ -108,7 +109,6 @@
         transmission_4-gtk
         unstable.ghostty
         vesktop
-        vscodium-fhs
         zoom-us
       ];
 
