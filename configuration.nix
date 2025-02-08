@@ -59,7 +59,7 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [  ];
+      allowedTCPPorts = [ 80 8000 ];
       allowedUDPPorts = [  ];
     };
 

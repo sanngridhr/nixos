@@ -20,18 +20,15 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   programs = {
+    firefox.enable = true;
     gnupg.agent.enable = true;
-    steam = {
-      enable = true;
-      # extest.enable = true;
-    };
-    zsh = {
-      enable = true;
-      vteIntegration = true;
-    };
+    steam.enable = true;
+    zsh.enable = true;
   };
 
   environment = {
@@ -40,20 +37,13 @@
       fjordlauncher = inputs.fjordlauncher.packages."${pkgs.system}";
 
       consolePackages = with pkgs; [
-        aria2
         bat
-        busybox
-        distrobox
         eza
-        fd
         git
-        git-lfs
         gnumake
         gnupg
         htop
-        jq
-        lm_sensors
-        openvpn
+        imagemagick
         starship
         steam-run
         tealdeer
@@ -75,9 +65,9 @@
         deno
         emacs29-pgtk
         jdt-language-server
+        python3Packages.jedi-language-server
         nil
         openjdk
-        pyright
         python3
         ruff
       ];
@@ -91,7 +81,6 @@
         eog
         evince
         file-roller
-        firefox
         fjordlauncher.fjordlauncher
         fragments
         geary
@@ -100,11 +89,11 @@
         gnome-sound-recorder
         gnome-tweaks
         inkscape
+        libreoffice-still
         nautilus
         nicotine-plus
         obs-studio
         rhythmbox
-        steam
         telegram-desktop
         transmission_4-gtk
         unstable.ghostty
