@@ -65,10 +65,10 @@
       devPackages = with pkgs; [
         deno
         emacs29-pgtk
-        jdt-language-server
+        ocamlPackages.ocaml-lsp
+        ocamlPackages.ocamlformat
         python3Packages.jedi-language-server
         nil
-        openjdk
         python3
         ruff
         texliveMedium
@@ -84,7 +84,6 @@
         evince
         file-roller
         fjordlauncher.fjordlauncher
-        fragments
         geary
         gimp
         gnome-calculator

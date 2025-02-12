@@ -4,8 +4,7 @@
   home = {
     username = "orest";
     homeDirectory = "/home/orest";
-    
-    stateVersion = "24.11"; # Don"t change
+    stateVersion = "24.11";
   };
 
   dconf.settings = {
@@ -34,16 +33,24 @@
       switch-to-workspace-6 = [ "<Alt>6" ];
     };
 
+    "org/gnome/evince" = {
+      continuous = true;
+      dual-page = true;
+      dual-page-odd-left = true;
+      show-sidebar = true;
+      zoom = 0.5;
+    };
+    
     "org/gnome/shell" = {
       favorite-apps = [
-        "firefox.desktop"
-        "org.telegram.desktop.desktop"
-        "vesktop.desktop"
-        "steam.desktop"
-        "emacs.desktop"
+        "firefox.desktop"              # 1st workspace
+        "org.telegram.desktop.desktop" # 2nd workspace
+        "vesktop.desktop"              # 3rd workspace
+        "steam.desktop"                # 4th workspace
+        "emacs.desktop"                # 5th workspace
         "writer.desktop"
-        "org.gnome.Rhythmbox3.desktop"
-        "org.gnome.Calculator.desktop"
+        "org.gnome.Rhythmbox3.desktop" # 6th workspace
+        "org.gnome.Calculator.desktop" # any workspace
         "org.gnome.Nautilus.desktop"
         "com.mitchellh.ghostty.desktop"
       ];
