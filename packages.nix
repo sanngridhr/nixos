@@ -39,6 +39,7 @@
       consolePackages = with pkgs; [
         bat
         eza
+        gcc
         git
         gnumake
         gnupg
@@ -70,6 +71,7 @@
         openjdk
         python3
         ruff
+        texliveMedium
       ];
 
       programPackages = with pkgs; [
@@ -104,8 +106,6 @@
       servicePackages = with pkgs; [
         alsa-utils
         binutils
-        gcc
-        groff
         linuxHeaders
         wineWowPackages.wayland
       ];
