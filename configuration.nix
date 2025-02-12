@@ -9,7 +9,6 @@
     ./fonts.nix
     ./hardware-configuration.nix
     ./packages.nix
-    ./users.nix
   ];
 
   boot = {
@@ -115,11 +114,18 @@
     Defaults env_keep += \"EDITOR VIMINIT XDG_CONFIG_HOME XDG_STATE_HOME\"";
   };
   
-  system.stateVersion = "24.11";
-  
   time.timeZone = "Europe/Kyiv";
+
+  users.users.orest = {
+    isNormalUser = true;
+    description = "Орест";
+    extraGroups = [ "docker" "networkmanager" "wheel" "input" ];
+    shell = pkgs.zsh;
+  };
 
   virtualisation.docker.enable = true;
 
   xdg.portal.enable = true;
+  
+  system.stateVersion = "24.11"; # Don't change
 }
