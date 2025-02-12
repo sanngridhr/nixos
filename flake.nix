@@ -14,8 +14,8 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      motherboard = with builtins; readFile "/sys/devices/virtual/dmi/id/product_name"
-        |> replaceStrings [ " " "\n" "\t" ] [ "" "" "" ];
+      motherboard = with builtins; replaceStrings [ " " "\n" "\t" ] [ "" "" "" ]
+        (readFile "/sys/devices/virtual/dmi/id/product_name");
       nixos-hardware = inputs.nixos-hardware.nixosModules;
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
