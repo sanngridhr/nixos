@@ -24,6 +24,7 @@
           nixos-hardware.common-gpu-amd
           home-manager.nixosModules.home-manager 
           ./configuration.nix
+          ./GLaDOS-hardware
         ];
       };
 
@@ -35,6 +36,7 @@
           nixos-hardware.lenovo-thinkpad-t480s
           home-manager.nixosModules.home-manager 
           ./configuration.nix
+          ./Adventure-hardware
         ];
       };
     };
