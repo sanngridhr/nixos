@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -33,6 +33,12 @@
     pulseaudio.enable = false;
   };
 
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.orest = import ./home.nix;
+  };
+
   i18n = {
     defaultLocale = "en_GB.UTF-8";
 
@@ -61,11 +67,6 @@
       allowedTCPPorts = [ 80 8000 ];
       allowedUDPPorts = [  ];
     };
-
-    hostName = with builtins; concatStringsSep "-" [
-      # (readFile "/sys/devices/virtual/dmi/id/product_name")
-      "nixos"
-    ] |> replaceStrings ["\n"] [""];
 
     networkmanager.enable = true;
   };

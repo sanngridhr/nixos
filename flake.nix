@@ -11,34 +11,32 @@
     
     fjordlauncher.url = "github:unmojang/FjordLauncher";
   };
-
-  nixConfig.extra-experimental-features = [ "pipe-operators" ];
   
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      # motherboard = with builtins; replaceStrings [ " " "\n" "\t" ] [ "_" "" "" ]
-      #   (readFile "/sys/devices/virtual/dmi/id/product_name");
-      motherboard = "20L8S7GJ05";
       nixos-hardware = inputs.nixos-hardware.nixosModules;
     in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.GLaDOS = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.orest = import ./home.nix;
-          }
-        ] ++ ( if motherboard == "MS-7C51"    then [
-          ./MS-7C51.nix
+          { networking.hostName = "GLaDOS"; }
           nixos-hardware.common-cpu-amd
           nixos-hardware.common-gpu-amd
-        ] else if motherboard == "20L8S7GJ05" then [
+          home-manager.nixosModules.home-manager 
+          ./configuration.nix
+        ];
+      };
+
+      nixosConfigurations.Adventure = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          { networking.hostName = "Adventure"; }
           nixos-hardware.lenovo-thinkpad-t480s
-        ] else []
-        ) ++ builtins.trace "Motherboard: `${motherboard}`" [];
+          home-manager.nixosModules.home-manager 
+          ./configuration.nix
+        ];
       };
     };
 }
