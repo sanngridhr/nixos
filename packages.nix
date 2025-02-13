@@ -34,7 +34,6 @@
   environment = {
     systemPackages = let
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
-      fjordlauncher = inputs.fjordlauncher.packages."${pkgs.system}";
 
       consolePackages = with pkgs; [
         bat
@@ -83,12 +82,10 @@
         eog
         evince
         file-roller
-        fjordlauncher.fjordlauncher
         geary
         gimp
         gnome-calculator
         gnome-sound-recorder
-        gnome-tweaks
         inkscape
         libreoffice-still
         nautilus
