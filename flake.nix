@@ -12,12 +12,13 @@
     fjordlauncher.url = "github:unmojang/FjordLauncher";
   };
 
-  nixConfig.extra-experimental-features = [ "pipe-operator" ];
+  nixConfig.extra-experimental-features = [ "pipe-operators" ];
   
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      motherboard = with builtins;replaceStrings [ " " "\n" "\t" ] [ "_" "" "" ]
-        (readFile "/sys/devices/virtual/dmi/id/product_name");
+      # motherboard = with builtins; replaceStrings [ " " "\n" "\t" ] [ "_" "" "" ]
+      #   (readFile "/sys/devices/virtual/dmi/id/product_name");
+      motherboard = "20L8S7GJ05";
       nixos-hardware = inputs.nixos-hardware.nixosModules;
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {

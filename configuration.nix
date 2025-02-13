@@ -63,7 +63,7 @@
     };
 
     hostName = with builtins; concatStringsSep "-" [
-      (readFile "/sys/devices/virtual/dmi/id/product_name")
+      # (readFile "/sys/devices/virtual/dmi/id/product_name")
       "nixos"
     ] |> replaceStrings ["\n"] [""];
 
