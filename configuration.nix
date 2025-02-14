@@ -7,7 +7,6 @@
 {
   imports = [
     ./fonts.nix
-    ./hardware-configuration.nix
     ./packages.nix
   ];
 
@@ -34,6 +33,7 @@
   };
 
   home-manager = {
+    backupFileExtension = "bak";
     useGlobalPkgs = true;
     useUserPackages = true;
     users.orest = import ./home.nix;

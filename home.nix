@@ -1,10 +1,15 @@
-{ lib, ... }:
+{ lib, dotfiles, ... }:
 
 {
   home = {
     username = "orest";
     homeDirectory = "/home/orest";
     stateVersion = "24.11";
+  };
+
+  home.file.".config" = {
+    source = "${dotfiles}";
+    recursive = true;
   };
 
   dconf.settings = {
