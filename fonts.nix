@@ -1,23 +1,22 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   fonts =
     let unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
     in {
       packages = with pkgs; [
+        libertinus
         noto-fonts
         source-han-sans
         source-han-serif
-        source-sans
-        source-serif
         twitter-color-emoji
         unstable.nerd-fonts.iosevka
       ];
 
       fontconfig = {
         defaultFonts = {
-          sansSerif = [ "Source Sans 3" ];
-          serif = [ "Source Serif 4" ];
+          sansSerif = [ "Libertinus Sans" ];
+          serif = [ "Libertinus Serif" ];
           monospace = [ "Iosevka Nerd Font Propo" "Iosevka Extended" ];
           emoji = [ "Twitter Color Emoji" ];
         };
