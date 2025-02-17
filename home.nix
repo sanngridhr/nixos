@@ -1,4 +1,4 @@
-{ lib, dotfiles, ... }:
+{ config, lib, dotfiles, ... }:
 
 {
   home = {
@@ -59,6 +59,15 @@
         "org.gnome.Nautilus.desktop"
         "com.mitchellh.ghostty.desktop"
       ];
+    };
+  };
+  
+  fonts.fontconfig = {
+    defaultFonts = {
+      sansSerif = [ "Source Sans 3" ];
+      serif = [ "Source Serif 4" ];
+      monospace = [ "Iosevka Nerd Font" ];
+      emoji = [ "Twitter Color Emoji" ];
     };
   };
 }

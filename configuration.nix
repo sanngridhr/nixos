@@ -5,14 +5,11 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./fonts.nix
-    ./packages.nix
-  ];
-
   boot = {
     # crashDump.enable = true;
 
+    kernelPackages = pkgs.linuxKernel.packages.linux_testing;
+    
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
@@ -30,13 +27,6 @@
   hardware = {
     enableAllFirmware = true;
     pulseaudio.enable = false;
-  };
-
-  home-manager = {
-    backupFileExtension = "bak";
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.orest = import ./home.nix;
   };
 
   i18n = {
@@ -77,10 +67,7 @@
   };
 
   services = {
-    gnome = {
-      core-utilities.enable = false;
-      sushi.enable = true;
-    };
+    gnome.core-utilities.enable = false;
 
     pipewire = {
       enable = true;

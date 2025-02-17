@@ -2,19 +2,19 @@
 
 {
   nix = {
+    package = pkgs.lix;
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
       randomizedDelaySec = "1d";
     };
-    package = pkgs.lix;
+    
     settings = {
       auto-optimise-store = true;
       experimental-features = [
         "flakes"
         "nix-command"
-        "pipe-operator"
       ];
       use-xdg-base-directories = true;
     };
@@ -24,12 +24,36 @@
     allowUnfree = true;
   };
 
-  programs = {
-    firefox.enable = true;
+  fonts.packages = 
+    let unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
+    in with pkgs; [
+      noto-fonts
+      source-han-sans
+      source-han-serif
+      source-sans
+      source-serif
+      twitter-color-emoji
+      unstable.nerd-fonts.iosevka
+    ];
+
+  programs = let
+    enabled = [
+      "evince"
+      "firefox"
+      "geary"
+      "git"
+      "htop"
+      "starship"
+      "steam"
+      "vim"
+      "zsh"
+      "file-roller"
+    ];
+    mkEnabled = name: { ${name}.enable = true; };
+  in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
+    git.lfs.enable = true;
     gnupg.agent.enable = true;
-    steam.enable = true;
-    zsh.enable = true;
-  };
+  } enabled;
 
   environment = {
     systemPackages = let
@@ -37,20 +61,17 @@
 
       consolePackages = with pkgs; [
         bat
+        binutils
         eza
         gcc
-        git
         gnumake
-        gnupg
-        htop
         imagemagick
-        starship
+        linuxHeaders
         steam-run
         tealdeer
         trash-cli
-        vim
+        wineWowPackages.wayland
         wl-clipboard
-        zsh
       ];
 
       desktopPackages = with pkgs; [
@@ -63,26 +84,21 @@
 
       devPackages = with pkgs; [
         deno
-        emacs29-pgtk
+        emacs30-pgtk
         ocamlPackages.ocaml-lsp
         ocamlPackages.ocamlformat
         python3Packages.jedi-language-server
         nil
-        python3
+        pypy3
         ruff
-        texliveMedium
       ];
 
       programPackages = with pkgs; [
-        abiword
         baobab
         celluloid
         cheese
         dconf-editor
         eog
-        evince
-        file-roller
-        geary
         gimp
         gnome-calculator
         gnome-sound-recorder
@@ -90,7 +106,6 @@
         libreoffice-still
         nautilus
         nicotine-plus
-        obs-studio
         rhythmbox
         telegram-desktop
         transmission_4-gtk
@@ -99,19 +114,11 @@
         zoom-us
       ];
 
-      servicePackages = with pkgs; [
-        alsa-utils
-        binutils
-        linuxHeaders
-        wineWowPackages.wayland
-      ];
-
     in builtins.concatLists [
       consolePackages
       desktopPackages
       devPackages
       programPackages
-      servicePackages
     ];
   };
 }
