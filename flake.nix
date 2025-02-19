@@ -1,7 +1,5 @@
 {
   inputs = {
-    dotfiles.url = "github:orest58008/config";
-    
     home-manager = {
       url                    = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +11,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
   
-  outputs = { self, nixpkgs, dotfiles, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       nixos-hardware = inputs.nixos-hardware.nixosModules;
 
@@ -23,7 +21,6 @@
         inputs.home-manager.nixosModules.home-manager {
           home-manager = {
             backupFileExtension = "bak";
-            extraSpecialArgs = { inherit dotfiles; };
             useGlobalPkgs = true;
             useUserPackages = true;
             users.orest = import ./home.nix;

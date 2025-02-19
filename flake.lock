@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "dotfiles": {
-      "locked": {
-        "lastModified": 1739489549,
-        "narHash": "sha256-mMusAxElOx941PuQYPLiPUBouUz51GFbdlpX11knuXM=",
-        "owner": "orest58008",
-        "repo": "config",
-        "rev": "f991143273326d824a240fb754de52b9200c7afb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "orest58008",
-        "repo": "config",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -85,7 +70,6 @@
     },
     "root": {
       "inputs": {
-        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
