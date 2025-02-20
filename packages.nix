@@ -14,9 +14,7 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   fonts.packages = 
     let unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";

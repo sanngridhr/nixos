@@ -7,6 +7,7 @@
       (mkTuple [ "xkb" "ua" ])
       (mkTuple [ "ibus" "libpinyin" ])
     ];
+    
     xkb-options = [ "compose:ralt" "caps:menu" ];
   };
 
@@ -18,6 +19,8 @@
   };
 
   "org/gnome/desktop/wm/keybindings" = {
+    switch-input-source          = [ "<Alt>Menu" ];
+    switch-input-source-backward = [ "<Shift><Alt>Menu" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
     switch-to-workspace-2 = [ "<Alt>2" ];
     switch-to-workspace-3 = [ "<Alt>3" ];
@@ -39,7 +42,7 @@
     show-sidebar = true;
     zoom = 0.5;
   };
-  
+
   "org/gnome/shell" = {
     enabled-extensions = [
       "appindicatorsupport@rgcjonas.gmail.com"
@@ -48,7 +51,7 @@
       "user-theme@gnome-shell-extensions.gcampax.github.com"
       "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
     ];
-    
+
     favorite-apps = [
       "firefox.desktop"              # 1st workspace
       "org.telegram.desktop.desktop" # 2nd workspace

@@ -30,19 +30,7 @@
   };
 
   i18n = {
-    defaultLocale = "en_GB.UTF-8";
-
-    extraLocaleSettings = {
-      LC_ADDRESS = "uk_UA.UTF-8";
-      LC_IDENTIFICATION = "uk_UA.UTF-8";
-      LC_MEASUREMENT = "uk_UA.UTF-8";
-      LC_MONETARY = "uk_UA.UTF-8";
-      LC_NAME = "uk_UA.UTF-8";
-      LC_NUMERIC = "uk_UA.UTF-8";
-      LC_PAPER = "uk_UA.UTF-8";
-      LC_TELEPHONE = "uk_UA.UTF-8";
-      LC_TIME = "uk_UA.UTF-8";
-    };
+    defaultLocale = "uk_UA.UTF-8";
 
     inputMethod = {
       enable = true;
@@ -67,6 +55,14 @@
   };
 
   services = {
+    fprintd = {
+      enable = true;
+      tod = {
+        enable = true;
+        driver = pkgs.libfprint-2-tod1-goodix;
+      };
+    };
+    
     gnome.core-utilities.enable = false;
 
     pipewire = {
