@@ -40,10 +40,12 @@
     dual-page = true;
     dual-page-odd-left = true;
     show-sidebar = true;
-    zoom = 0.5;
+    sizing-mode = "fit-width";
   };
 
   "org/gnome/shell" = {
+    disable-user-extensions = false;
+    
     enabled-extensions = [
       "appindicatorsupport@rgcjonas.gmail.com"
       "auto-move-windows@gnome-shell-extensions.gcampax.github.com"

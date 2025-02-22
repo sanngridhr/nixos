@@ -80,10 +80,7 @@
 
     xserver = {
       enable = true;
-      excludePackages = with pkgs; [
-        xterm
-        xorg.xprop
-      ];
+      excludePackages = with pkgs; [ xterm xorg.xprop ];
 
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
