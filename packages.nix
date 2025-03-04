@@ -88,6 +88,7 @@
       programPackages = with pkgs; [
         baobab
         celluloid
+	cemu
         cheese
         dconf-editor
         eog
