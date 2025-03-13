@@ -7,8 +7,6 @@
 {
   boot = {
     # crashDump.enable = true;
-
-    kernelPackages = pkgs.linuxKernel.packages.linux_testing;
     
     loader = {
       efi.canTouchEfiVariables = true;
@@ -42,7 +40,7 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 8000 ];
+      allowedTCPPorts = [ 80 8000 8080 ];
       allowedUDPPorts = [  ];
     };
 

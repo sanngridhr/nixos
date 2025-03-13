@@ -96,6 +96,7 @@
         gnome-calculator
         gnome-sound-recorder
         inkscape
+        jetbrains.pycharm-community
         libreoffice-still
         nautilus
         nicotine-plus

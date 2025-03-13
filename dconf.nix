@@ -60,6 +60,7 @@
       "vesktop.desktop"              # 3rd workspace
       "steam.desktop"                # 4th workspace
       "emacs.desktop"                # 5th workspace
+      "pycharm-community.desktop"
       "writer.desktop"
       "org.gnome.Rhythmbox3.desktop" # 6th workspace
       "org.gnome.Calculator.desktop" # any workspace
