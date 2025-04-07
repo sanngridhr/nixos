@@ -64,6 +64,7 @@
         trash-cli
         wineWowPackages.wayland
         wl-clipboard
+        yt-dlp
       ];
 
       desktopPackages = with pkgs; [
@@ -88,7 +89,6 @@
       programPackages = with pkgs; [
         baobab
         celluloid
-	cemu
         cheese
         dconf-editor
         eog
