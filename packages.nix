@@ -62,6 +62,7 @@
         steam-run
         tealdeer
         trash-cli
+        unar
         wineWowPackages.wayland
         wl-clipboard
         yt-dlp
@@ -78,11 +79,10 @@
       devPackages = with pkgs; [
         deno
         emacs30-pgtk
-        ocamlPackages.ocaml-lsp
-        ocamlPackages.ocamlformat
-        python3Packages.jedi-language-server
+        go
+        gopls
         nil
-        pypy3
+        python3
         ruff
       ];
 
@@ -94,7 +94,7 @@
         eog
         gimp
         gnome-calculator
-        gnome-sound-recorder
+        helvum
         inkscape
         jetbrains.pycharm-community
         libreoffice-still
