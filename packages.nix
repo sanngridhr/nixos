@@ -47,6 +47,12 @@
     gnupg.agent.enable = true;
   } enabled;
 
+  services.emacs = {
+    enable = true;
+    install = true;
+    package = pkgs.emacs30-pgtk;
+  };
+
   environment = {
     systemPackages = let
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
@@ -59,6 +65,8 @@
         gnumake
         imagemagick
         linuxHeaders
+        nil
+        ruff
         steam-run
         tealdeer
         trash-cli
@@ -76,27 +84,14 @@
         posy-cursors
       ];
 
-      devPackages = with pkgs; [
-        deno
-        emacs30-pgtk
-        go
-        gopls
-        nil
-        python3
-        ruff
-      ];
-
       programPackages = with pkgs; [
         baobab
         celluloid
-        cheese
-        dconf-editor
         eog
         gimp
         gnome-calculator
         helvum
         inkscape
-        jetbrains.pycharm-community
         libreoffice-still
         nautilus
         nicotine-plus
@@ -111,7 +106,6 @@
     in builtins.concatLists [
       consolePackages
       desktopPackages
-      devPackages
       programPackages
     ];
   };
