@@ -31,7 +31,7 @@
   programs = let
     enabled = [
       "evince"
-      "firefox"
+      "file-roller"
       "geary"
       "git"
       "htop"
@@ -39,14 +39,19 @@
       "steam"
       "vim"
       "zsh"
-      "file-roller"
     ];
     mkEnabled = name: { ${name}.enable = true; };
   in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
     git.lfs.enable = true;
     gnupg.agent.enable = true;
+    firefox = {
+      enable = true;
+      preferences = {
+        "browser.tabs.groups.enabled" = true;
+      };
+    };
   } enabled;
-
+  
   services.emacs = {
     enable = true;
     install = true;
