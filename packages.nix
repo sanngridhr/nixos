@@ -51,12 +51,6 @@
       };
     };
   } enabled;
-  
-  services.emacs = {
-    enable = true;
-    install = true;
-    package = pkgs.emacs30-pgtk;
-  };
 
   environment = {
     systemPackages = let
@@ -92,6 +86,7 @@
       programPackages = with pkgs; [
         baobab
         celluloid
+        emacs30-pgtk
         eog
         gimp
         gnome-calculator

@@ -63,6 +63,15 @@
     
     gnome.core-utilities.enable = false;
 
+    openssh = {
+      enable = true;
+      openFirewall = true;
+      ports = [ 22 ];
+      settings = {
+        PermitRootLogin = "no";
+      };
+    };
+    
     pipewire = {
       enable = true;
       alsa = {
