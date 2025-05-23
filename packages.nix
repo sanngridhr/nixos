@@ -96,7 +96,6 @@
         nautilus
         nicotine-plus
         rhythmbox
-        telegram-desktop
         transmission_4-gtk
         unstable.ghostty
         vesktop

@@ -69,6 +69,7 @@
       ports = [ 22 ];
       settings = {
         PermitRootLogin = "no";
+        PasswordAuthentication = false;
       };
     };
     
@@ -115,5 +116,5 @@
 
   xdg.portal.enable = true;
   
-  system.stateVersion = "24.11"; # Don't change
+  system.stateVersion = "24.11"; # Don't change!
 }
