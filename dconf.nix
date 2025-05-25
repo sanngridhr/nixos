@@ -12,6 +12,7 @@
   };
 
   "org/gnome/desktop/interface" = {
+    cursor-size = 12;
     cursor-theme = "Posy_Cursor";
     gtk-theme = "Materia-dark";
     font-name = "sans-serif 11";
@@ -19,6 +20,12 @@
   };
 
   "org/gnome/desktop/wm/keybindings" = {
+    move-to-workspace-1 = [ "<Shift><Alt>1" ];
+    move-to-workspace-2 = [ "<Shift><Alt>2" ];
+    move-to-workspace-3 = [ "<Shift><Alt>3" ];
+    move-to-workspace-4 = [ "<Shift><Alt>4" ];
+    move-to-workspace-5 = [ "<Shift><Alt>5" ];
+    move-to-workspace-6 = [ "<Shift><Alt>6" ];
     switch-input-source          = [ "<Alt>Menu" ];
     switch-input-source-backward = [ "<Shift><Alt>Menu" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
@@ -40,18 +47,16 @@
     dual-page = true;
     dual-page-odd-left = true;
     show-sidebar = true;
-    sizing-mode = "fit-width";
+    sizing-mode = "fit-page";
   };
 
   "org/gnome/shell" = {
     disable-user-extensions = false;
-    
+
     enabled-extensions = [
       "appindicatorsupport@rgcjonas.gmail.com"
       "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-      "drive-menu@gnome-shell-extensions.gcampax.github.com"
-      "user-theme@gnome-shell-extensions.gcampax.github.com"
-      "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+      "workspaces-by-open-apps@favo02.github.com"
     ];
 
     favorite-apps = [

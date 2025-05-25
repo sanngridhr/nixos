@@ -30,6 +30,7 @@
 
   programs = let
     enabled = [
+      "bat"
       "evince"
       "file-roller"
       "geary"
@@ -57,7 +58,6 @@
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = with pkgs; [
-        bat
         binutils
         eza
         gcc
@@ -77,7 +77,9 @@
 
       desktopPackages = with pkgs; [
         gnomeExtensions.appindicator
+        gnomeExtensions.auto-move-windows
         gnomeExtensions.just-perfection
+        gnomeExtensions.workspaces-indicator-by-open-apps
         materia-theme
         papirus-icon-theme
         posy-cursors

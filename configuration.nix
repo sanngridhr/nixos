@@ -24,7 +24,6 @@
 
   hardware = {
     enableAllFirmware = true;
-    pulseaudio.enable = false;
   };
 
   i18n = {
@@ -61,7 +60,7 @@
       };
     };
     
-    gnome.core-utilities.enable = false;
+    gnome.core-apps.enable = false;
 
     openssh = {
       enable = true;
@@ -81,6 +80,8 @@
       };
       pulse.enable = true;
     };
+    
+    pulseaudio.enable = false;
 
     udev.packages = with pkgs; [
       gnome-settings-daemon
