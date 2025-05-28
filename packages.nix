@@ -55,7 +55,7 @@
 
   environment = {
     systemPackages = let
-      unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
+      _unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = with pkgs; [
         binutils
@@ -65,7 +65,6 @@
         imagemagick
         linuxHeaders
         nil
-        ruff
         steam-run
         tealdeer
         trash-cli
@@ -90,6 +89,7 @@
         celluloid
         emacs30-pgtk
         eog
+        ghostty
         gimp
         gnome-calculator
         helvum
@@ -99,7 +99,6 @@
         nicotine-plus
         rhythmbox
         transmission_4-gtk
-        unstable.ghostty
         vesktop
         zoom-us
       ];

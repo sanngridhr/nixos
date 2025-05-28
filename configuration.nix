@@ -6,7 +6,7 @@
 
 {
   boot = {
-    # crashDump.enable = true;
+    crashDump.enable = true;
     
     loader = {
       efi.canTouchEfiVariables = true;
