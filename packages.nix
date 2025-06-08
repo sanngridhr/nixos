@@ -33,6 +33,7 @@
       "bat"
       "evince"
       "file-roller"
+      "firefox"
       "geary"
       "git"
       "htop"
@@ -45,11 +46,8 @@
   in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
     git.lfs.enable = true;
     gnupg.agent.enable = true;
-    firefox = {
-      enable = true;
-      preferences = {
-        "browser.tabs.groups.enabled" = true;
-      };
+    firefox.preferences = {
+      "browser.tabs.groups.enabled" = true;
     };
   } enabled;
 
@@ -98,6 +96,7 @@
         nautilus
         nicotine-plus
         rhythmbox
+        telegram-desktop
         transmission_4-gtk
         vesktop
         zoom-us
