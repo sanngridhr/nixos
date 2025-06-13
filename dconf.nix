@@ -2,16 +2,17 @@
 
 {
   "org/gnome/desktop/input-sources" = {
+    per-window = false;
     sources = with lib.hm.gvariant; [
       (mkTuple [ "xkb" "us" ])
       (mkTuple [ "xkb" "ua" ])
-      (mkTuple [ "ibus" "libpinyin" ])
+      (mkTuple [ "ibus" "anthy" ])
     ];
     
     xkb-options = [
       "compose:ralt"
-      "caps:menu"
       "shift:both_capslock"
+      "caps:hyper"
     ];
   };
 
@@ -30,8 +31,8 @@
     move-to-workspace-4 = [ "<Shift><Alt>4" ];
     move-to-workspace-5 = [ "<Shift><Alt>5" ];
     move-to-workspace-6 = [ "<Shift><Alt>6" ];
-    switch-input-source = [ "<Alt>Menu" ];
-    switch-input-source-backward = [ "<Shift><Alt>Menu" ];
+    switch-input-source = [ "<Alt>Hyper_L" ];
+    switch-input-source-backward = [ "<Shift><Alt>Hyper_L" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
     switch-to-workspace-2 = [ "<Alt>2" ];
     switch-to-workspace-3 = [ "<Alt>3" ];

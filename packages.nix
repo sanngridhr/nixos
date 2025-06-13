@@ -17,15 +17,15 @@
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = 
-    let unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
+    let _unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
     in with pkgs; [
+      nerd-fonts.iosevka
       noto-fonts
       source-han-sans
       source-han-serif
       source-sans
       source-serif
       twitter-color-emoji
-      unstable.nerd-fonts.iosevka
     ];
 
   programs = let
@@ -77,6 +77,10 @@
         gnomeExtensions.auto-move-windows
         gnomeExtensions.just-perfection
         gnomeExtensions.workspaces-indicator-by-open-apps
+        hunspell
+        hunspellDicts.en_GB-ise
+        hunspellDicts.en_US
+        hunspellDicts.uk_UA
         materia-theme
         papirus-icon-theme
         posy-cursors
