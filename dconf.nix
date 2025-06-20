@@ -67,15 +67,47 @@
     favorite-apps = [
       "firefox.desktop"              # 1st workspace
       "org.telegram.desktop.desktop" # 2nd workspace
-      "vesktop.desktop"              # 3rd workspace
-      "steam.desktop"                # 4th workspace
-      "emacs.desktop"                # 5th workspace
+      "discord.desktop"
+      "steam.desktop"                # 3rd workspace
+      "emacs.desktop"                # 4th workspace
       "pycharm-community.desktop"
       "writer.desktop"
-      "org.gnome.Rhythmbox3.desktop" # 6th workspace
+      "org.gnome.Rhythmbox3.desktop" # 5th workspace
       "org.gnome.Calculator.desktop" # any workspace
       "org.gnome.Nautilus.desktop"
       "com.mitchellh.ghostty.desktop"
     ];
+  };
+
+  "org/gnome/shell/extensions/appindicator" = {
+    tray-pos = "left";
+  };
+
+  "org/gnome/shell/extensions/auto-move-windows" = {
+    application-list = [
+      "firefox.desktop:1"                    # 1st workspace
+      "org.telegram.desktop.desktop:2"       # 2nd workspace
+      "discord.desktop:2"
+      "steam.desktop:3"                      # 3rd workspace
+      "org.gnome.Rhythmbox3.desktop:5"       # 5th workspace
+      "org.nicotine_plus.Nicotine.desktop:6" # 6th workspace
+      "transmission-gtk.desktop:6"
+    ];
+  };
+
+  "org/gnome/shell/extensions/workspaces-indicator-by-open-apps" = {
+    apps-all-desaturate = false;
+    apps-inactive-effect = "REDUCE OPACITY";
+    apps-minimized-effect = "NOTHING";
+    apps-symbolic-icons = false;
+    hide-activities-button = false;
+    icons-group = "GROUP AND SHOW COUNT";
+    indicator-hide-empty = false;
+    indicator-round-borders = false;
+    indicator-show-indexes = true;
+    indicator-use-custom-names = true;
+    position-in-panel = "RIGHT";
+    position-index = 0;
+    scroll-inverse = true;
   };
 }
