@@ -89,7 +89,6 @@
       programPackages = with pkgs; [
         baobab
         celluloid
-        (discord.override {withVencord = true;})
         emacs30-pgtk
         eog
         ghostty
@@ -103,6 +102,7 @@
         rhythmbox
         telegram-desktop
         transmission_4-gtk
+        vencord
         zoom-us
       ];
 

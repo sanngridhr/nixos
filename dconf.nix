@@ -67,7 +67,7 @@
     favorite-apps = [
       "firefox.desktop"              # 1st workspace
       "org.telegram.desktop.desktop" # 2nd workspace
-      "discord.desktop"
+      "vesktop.desktop"
       "steam.desktop"                # 3rd workspace
       "emacs.desktop"                # 4th workspace
       "pycharm-community.desktop"
@@ -87,7 +87,7 @@
     application-list = [
       "firefox.desktop:1"                    # 1st workspace
       "org.telegram.desktop.desktop:2"       # 2nd workspace
-      "discord.desktop:2"
+      "vesktop.desktop:2"
       "steam.desktop:3"                      # 3rd workspace
       "org.gnome.Rhythmbox3.desktop:5"       # 5th workspace
       "org.nicotine_plus.Nicotine.desktop:6" # 6th workspace
