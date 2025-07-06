@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { pkgs, ... }:
 
 {
@@ -22,9 +18,7 @@
     };
   };
 
-  hardware = {
-    enableAllFirmware = true;
-  };
+  hardware.enableAllFirmware = true;
 
   i18n = {
     defaultLocale = "uk_UA.UTF-8";
@@ -46,6 +40,16 @@
     networkmanager.enable = true;
   };
 
+  programs.regreet = {
+    enable = true;
+    settings = {
+      commands = {
+        reboot = [ "systemctl" "reboot" ];
+        poweroff = [ "systemctl" "poweroff" ];
+      };
+    };
+  };
+  
   qt = {
     platformTheme = "gnome";
     style = "adwaita-dark";
@@ -62,6 +66,8 @@
     
     gnome.core-apps.enable = false;
 
+    greetd.enable = true;
+    
     openssh = {
       enable = true;
       openFirewall = true;
@@ -89,7 +95,6 @@
       excludePackages = with pkgs; [ xterm xorg.xprop ];
 
       desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
     };
 
     yggdrasil.enable = true;
@@ -107,7 +112,7 @@
     isNormalUser = true;
     description = "Орест";
     extraGroups = [ "docker" "networkmanager" "wheel" "input" ];
-    shell = pkgs.zsh;
+    shell = pkgs.elvish;
   };
 
   virtualisation.docker.enable = true;

@@ -40,7 +40,6 @@
       "starship"
       "steam"
       "vim"
-      "zsh"
     ];
     mkEnabled = name: { ${name}.enable = true; };
   in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
@@ -57,6 +56,7 @@
 
       consolePackages = with pkgs; [
         binutils
+        elvish
         eza
         gcc
         gnumake
@@ -102,7 +102,7 @@
         rhythmbox
         telegram-desktop
         transmission_4-gtk
-        vencord
+        vesktop
         zoom-us
       ];
 

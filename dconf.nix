@@ -65,15 +65,16 @@
     ];
 
     favorite-apps = [
-      "firefox.desktop"              # 1st workspace
-      "org.telegram.desktop.desktop" # 2nd workspace
+      "firefox.desktop"
+      "org.telegram.desktop.desktop"
       "vesktop.desktop"
-      "steam.desktop"                # 3rd workspace
-      "emacs.desktop"                # 4th workspace
+      "steam.desktop"
+      "emacs.desktop"
       "pycharm-community.desktop"
       "writer.desktop"
-      "org.gnome.Rhythmbox3.desktop" # 5th workspace
-      "org.gnome.Calculator.desktop" # any workspace
+      "org.gnome.Rhythmbox3.desktop"
+      "transmission-gtk.desktop"
+      "org.gnome.Calculator.desktop"
       "org.gnome.Nautilus.desktop"
       "com.mitchellh.ghostty.desktop"
     ];
@@ -85,12 +86,12 @@
 
   "org/gnome/shell/extensions/auto-move-windows" = {
     application-list = [
-      "firefox.desktop:1"                    # 1st workspace
-      "org.telegram.desktop.desktop:2"       # 2nd workspace
-      "vesktop.desktop:2"
-      "steam.desktop:3"                      # 3rd workspace
-      "org.gnome.Rhythmbox3.desktop:5"       # 5th workspace
-      "org.nicotine_plus.Nicotine.desktop:6" # 6th workspace
+      "firefox.desktop:1"
+      "org.telegram.desktop.desktop:2"
+      "vesktop.desktop:3"
+      "steam.desktop:4"
+      "org.gnome.Rhythmbox3.desktop:5"
+      "org.nicotine_plus.Nicotine.desktop:6"
       "transmission-gtk.desktop:6"
     ];
   };
