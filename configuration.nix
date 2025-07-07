@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   boot = {
@@ -18,6 +18,8 @@
     };
   };
 
+  fonts = import ./fonts.nix { inherit pkgs inputs; };
+  
   hardware.enableAllFirmware = true;
 
   i18n = {
@@ -39,16 +41,6 @@
 
     networkmanager.enable = true;
   };
-
-  programs.regreet = {
-    enable = true;
-    settings = {
-      commands = {
-        reboot = [ "systemctl" "reboot" ];
-        poweroff = [ "systemctl" "poweroff" ];
-      };
-    };
-  };
   
   qt = {
     platformTheme = "gnome";
@@ -65,8 +57,6 @@
     };
     
     gnome.core-apps.enable = false;
-
-    greetd.enable = true;
     
     openssh = {
       enable = true;

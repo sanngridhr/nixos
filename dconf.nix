@@ -17,6 +17,7 @@
   };
 
   "org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark";
     cursor-size = 12;
     cursor-theme = "Posy_Cursor";
     gtk-theme = "Materia-dark";
@@ -31,8 +32,7 @@
     move-to-workspace-4 = [ "<Shift><Alt>4" ];
     move-to-workspace-5 = [ "<Shift><Alt>5" ];
     move-to-workspace-6 = [ "<Shift><Alt>6" ];
-    switch-input-source = [ "<Alt>Hyper_L" ];
-    switch-input-source-backward = [ "<Shift><Alt>Hyper_L" ];
+    switch-input-source = [ "<Alt>Shift_L" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
     switch-to-workspace-2 = [ "<Alt>2" ];
     switch-to-workspace-3 = [ "<Alt>3" ];

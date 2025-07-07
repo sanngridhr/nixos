@@ -16,18 +16,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  fonts.packages = 
-    let _unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
-    in with pkgs; [
-      nerd-fonts.iosevka
-      noto-fonts
-      source-han-sans
-      source-han-serif
-      source-sans
-      source-serif
-      twitter-color-emoji
-    ];
-
   programs = let
     enabled = [
       "bat"
@@ -37,7 +25,7 @@
       "geary"
       "git"
       "htop"
-      "starship"
+      "regreet"
       "steam"
       "vim"
     ];
@@ -47,6 +35,16 @@
     gnupg.agent.enable = true;
     firefox.preferences = {
       "browser.tabs.groups.enabled" = true;
+    };
+    regreet = with pkgs; {
+      cursorTheme = { name = "Posy_Cursor";
+                      package = posy-cursor; };
+      font = { name = "Source Sans 3";
+               package = source-sans; };
+      iconTheme = { name = "Papirus-Dark";
+                    package = papirus-icon-theme; };
+      theme = { name = "Materia-dark";
+                package = materia-theme; };
     };
   } enabled;
 
@@ -63,6 +61,7 @@
         imagemagick
         linuxHeaders
         nil
+        starship
         steam-run
         tealdeer
         trash-cli
