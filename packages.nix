@@ -37,14 +37,22 @@
       "browser.tabs.groups.enabled" = true;
     };
     regreet = with pkgs; {
-      cursorTheme = { name = "Posy_Cursor";
-                      package = posy-cursor; };
-      font = { name = "Source Sans 3";
-               package = source-sans; };
-      iconTheme = { name = "Papirus-Dark";
-                    package = papirus-icon-theme; };
-      theme = { name = "Materia-dark";
-                package = materia-theme; };
+      cursorTheme = {
+        name = "Posy_Cursor";
+        package = posy-cursor;
+      };
+      font = {
+        name = "Source Sans 3";
+        package = source-sans;
+      };
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = papirus-icon-theme;
+      };
+      theme = {
+        name = "Materia-dark";
+        package = materia-theme;
+      };
     };
   } enabled;
 
@@ -93,6 +101,7 @@
         ghostty
         gimp
         gnome-calculator
+        gnome-tweaks
         helvum
         inkscape
         libreoffice-still

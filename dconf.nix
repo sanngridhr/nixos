@@ -26,12 +26,12 @@
   };
 
   "org/gnome/desktop/wm/keybindings" = {
-    move-to-workspace-1 = [ "<Shift><Alt>1" ];
-    move-to-workspace-2 = [ "<Shift><Alt>2" ];
-    move-to-workspace-3 = [ "<Shift><Alt>3" ];
-    move-to-workspace-4 = [ "<Shift><Alt>4" ];
-    move-to-workspace-5 = [ "<Shift><Alt>5" ];
-    move-to-workspace-6 = [ "<Shift><Alt>6" ];
+    move-to-workspace-1 = [ "<Ctrl><Alt>1" ];
+    move-to-workspace-2 = [ "<Ctrl><Alt>2" ];
+    move-to-workspace-3 = [ "<Ctrl><Alt>3" ];
+    move-to-workspace-4 = [ "<Ctrl><Alt>4" ];
+    move-to-workspace-5 = [ "<Ctrl><Alt>5" ];
+    move-to-workspace-6 = [ "<Ctrl><Alt>6" ];
     switch-input-source = [ "<Alt>Shift_L" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
     switch-to-workspace-2 = [ "<Alt>2" ];
