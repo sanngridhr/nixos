@@ -18,6 +18,22 @@
     };
   };
 
+  environment.sessionVariables = rec {
+    EDITOR = "emacs -nw";
+    MANPAGER = "bat -l man -p";
+
+    XDG_CACHE_HOME = "$HOME/.cache";
+    
+    XDG_CONFIG_HOME = "$HOME/.config";
+    DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
+    JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
+    
+    XDG_DATA_HOME = "$HOME/.local/share";
+    GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
+
+    XDG_STATE_HOME = "$HOME/.local/state";
+  };
+  
   fonts = import ./fonts.nix { inherit pkgs inputs; };
   
   hardware.enableAllFirmware = true;
