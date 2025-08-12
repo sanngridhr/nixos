@@ -21,6 +21,7 @@
   environment.sessionVariables = rec {
     EDITOR = "emacs -nw";
     MANPAGER = "bat -l man -p";
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
 
     XDG_CACHE_HOME = "$HOME/.cache";
     
@@ -36,7 +37,10 @@
   
   fonts = import ./fonts.nix { inherit pkgs inputs; };
   
-  hardware.enableAllFirmware = true;
+  hardware = {
+    enableAllFirmware = true;
+    keyboard.qmk.enable = true;
+  };
 
   i18n = {
     defaultLocale = "uk_UA.UTF-8";
@@ -44,14 +48,14 @@
     inputMethod = {
       enable = true;
       type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ anthy ];
+      ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
     };
   };
 
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 8000 8080 ];
+      allowedTCPPorts = [  ];
       allowedUDPPorts = [  ];
     };
 
@@ -121,7 +125,10 @@
     shell = pkgs.elvish;
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
 
   xdg.portal.enable = true;
   

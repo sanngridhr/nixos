@@ -16,19 +16,19 @@
   fileSystems."/" =
     { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd,subvol=@nixos" ];
+      options = [ "compress=zstd" "subvol=@nixos" ];
     };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd,subvol=@home" ];
+      options = [ "compress=zstd" "subvol=@home" ];
     };
 
   fileSystems."/data" =
     { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd,subvol=@data" ];
+      options = [ "compress=zstd" "subvol=@data" ];
     };
 
   fileSystems."/boot" =
@@ -37,9 +37,7 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-label/SWAP"; }
-    ];
+  swapDevices = [ { device = "/dev/disk/by-label/SWAP"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

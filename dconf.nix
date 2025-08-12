@@ -6,7 +6,7 @@
     sources = with lib.hm.gvariant; [
       (mkTuple [ "xkb" "us" ])
       (mkTuple [ "xkb" "ua" ])
-      (mkTuple [ "ibus" "anthy" ])
+      (mkTuple [ "ibus" "libpinyin" ])
     ];
     
     xkb-options = [
@@ -26,13 +26,13 @@
   };
 
   "org/gnome/desktop/wm/keybindings" = {
-    move-to-workspace-1 = [ "<Ctrl><Alt>1" ];
-    move-to-workspace-2 = [ "<Ctrl><Alt>2" ];
-    move-to-workspace-3 = [ "<Ctrl><Alt>3" ];
-    move-to-workspace-4 = [ "<Ctrl><Alt>4" ];
-    move-to-workspace-5 = [ "<Ctrl><Alt>5" ];
-    move-to-workspace-6 = [ "<Ctrl><Alt>6" ];
-    switch-input-source = [ "<Alt>Shift_L" ];
+    move-to-workspace-1 = [ "<Alt><Shift>1" ];
+    move-to-workspace-2 = [ "<Alt><Shift>2" ];
+    move-to-workspace-3 = [ "<Alt><Shift>3" ];
+    move-to-workspace-4 = [ "<Alt><Shift>4" ];
+    move-to-workspace-5 = [ "<Alt><Shift>5" ];
+    move-to-workspace-6 = [ "<Alt><Shift>6" ];
+    switch-input-source = [ "<Alt>Hyper_L" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
     switch-to-workspace-2 = [ "<Alt>2" ];
     switch-to-workspace-3 = [ "<Alt>3" ];
