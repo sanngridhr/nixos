@@ -25,7 +25,6 @@
       "geary"
       "git"
       "htop"
-      "regreet"
       "steam"
       "vim"
     ];
@@ -37,9 +36,10 @@
       "browser.tabs.groups.enabled" = true;
     };
     regreet = with pkgs; {
+      enable = true;
       cursorTheme = {
         name = "Posy_Cursor";
-        package = posy-cursor;
+        package = posy-cursors;
       };
       font = {
         name = "Source Sans 3";

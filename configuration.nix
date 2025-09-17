@@ -26,11 +26,13 @@
     XDG_CACHE_HOME = "$HOME/.cache";
     
     XDG_CONFIG_HOME = "$HOME/.config";
+    "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
     DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
     JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
     
     XDG_DATA_HOME = "$HOME/.local/share";
     GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
+    SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
 
     XDG_STATE_HOME = "$HOME/.local/state";
   };
