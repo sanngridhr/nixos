@@ -6,9 +6,11 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "ahci" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "ahci" "usbhid" "sd_mod" ];
+    initrd.kernelModules = [ "kvm-amd" ];
+    kernelParams = [ "mem_sleep_default=deep" ];
+  };
 
   fileSystems = {
     "/" = {

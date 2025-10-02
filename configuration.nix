@@ -69,16 +69,38 @@
     style = "adwaita-dark";
   };
 
-  services = {
-    fprintd = {
+  services = let
+    secrets_dir = "/ssdata/secrets";
+  in {
+    gnome.core-apps.enable = false;
+    
+    mpd = {
       enable = true;
-      tod = {
-        enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
+      credentials = [
+        {
+          passwordFile = "${secrets_dir}/mpd/password";
+          permissions = [ "read" "add" "control" ];
+        }
+      ];
+      musicDirectory = "/ssdata/music";
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "PipeWire Sound Server"
+        }
+      '';
+      startWhenNeeded = true;
+    };
+
+    mpdscribble = {
+      enable = true;
+      endpoints = {
+        "last.fm" = {
+          username = "orest58008";
+          passwordFile = "${secrets_dir}/mpdscribble/last.fm/password";
+        };
       };
     };
-    
-    gnome.core-apps.enable = false;
     
     openssh = {
       enable = true;
@@ -116,6 +138,12 @@
     rtkit.enable = true;
     sudo.extraConfig = "Defaults env_reset,pwfeedback
     Defaults env_keep += \"EDITOR VIMINIT XDG_CONFIG_HOME XDG_STATE_HOME\"";
+  };
+
+  systemd.services.mpd = {
+    serviceConfig = {
+      ReadWritePaths = "/ssdata/secrets/mpd";
+    };
   };
   
   time.timeZone = "Europe/Kyiv";

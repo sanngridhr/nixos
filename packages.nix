@@ -15,7 +15,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
+  
   programs = let
     enabled = [
       "bat"
@@ -23,16 +23,19 @@
       "file-roller"
       "firefox"
       "geary"
-      "git"
       "htop"
       "steam"
       "vim"
     ];
     mkEnabled = name: { ${name}.enable = true; };
   in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
-    git.lfs.enable = true;
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
     gnupg.agent.enable = true;
     firefox.preferences = {
+      enable = true;
       "browser.tabs.groups.enabled" = true;
     };
     regreet = with pkgs; {
@@ -94,6 +97,7 @@
       ];
 
       programPackages = with pkgs; [
+        ario
         baobab
         celluloid
         emacs30-pgtk
@@ -107,7 +111,6 @@
         libreoffice-still
         nautilus
         nicotine-plus
-        rhythmbox
         telegram-desktop
         transmission_4-gtk
         vesktop
