@@ -17,6 +17,7 @@
   };
 
   "org/gnome/desktop/interface" = {
+    accent-color = "red";
     color-scheme = "prefer-dark";
     cursor-size = 12;
     cursor-theme = "Posy_Cursor";
@@ -56,6 +57,21 @@
   };
 
   "org/gnome/shell" = {
+    app-picker-layout = with lib.hm.gvariant; [
+      (mkTuple [ "cf_editors" 0 ])
+      (mkTuple [ "cf_graphics" 1 ])
+      (mkTuple [ "cf_internet" 2 ])
+      (mkTuple [ "cf_office" 3 ])
+      (mkTuple [ "cf_settings" 4 ])
+      (mkTuple [ "cf_sound_video" 5 ])
+      (mkTuple [ "htop.desktop" 6 ])
+      (mkTuple [ "mupdf.desktop" 7 ])
+      (mkTuple [ "nixos-manual.desktop" 8 ])
+      (mkTuple [ "org.gnome.FileRoller.desktop" 9 ])
+      (mkTuple [ "org.gnome.Tour.desktop" 10 ])
+      (mkTuple [ "org.gnome.baobab.desktop" 11 ])
+    ];
+    
     disable-user-extensions = false;
 
     enabled-extensions = [
@@ -110,5 +126,79 @@
     position-in-panel = "RIGHT";
     position-index = 0;
     scroll-inverse = true;
+  };
+
+  "org/gnome/desktop/app-folders" = {
+    folder-children = [
+      "cf_editors"
+      "cf_graphics"
+      "cf_internet"
+      "cf_office"
+      "cf_settings"
+      "cf_sound_video"
+    ];
+  };
+  
+  "org/gnome/desktop/app-folders/folders/cf_editors" = {
+    apps = [
+      "codium.desktop"
+      "emacsclient.desktop"
+      "vim.desktop"
+    ];
+    name = "Редактори";
+  };
+
+  "org/gnome/desktop/app-folders/folders/cf_graphics" = {
+    apps = [
+      "gimp.desktop"
+      "org.gnome.eog.desktop"
+      "org.inkscape.Inkscape.desktop"
+    ];
+    name = "Зображення";
+  };
+
+  "org/gnome/desktop/app-folders/folders/cf_internet" = {
+    apps = [
+      "org.gnome.Geary.desktop"
+      "org.nicotine_plus.Nicotine.desktop"
+      "Zoom.desktop"
+    ];
+    name = "Інтернет";
+  };
+
+  "org/gnome/desktop/app-folders/folders/cf_office" = {
+    apps = [
+      "abiword.desktop"
+      "cups.desktop"
+      "org.gnome.Evince.desktop"
+      "base.desktop"
+      "calc.desktop"
+      "draw.desktop"
+      "impress.desktop"
+      "math.desktop"
+      "startcenter.desktop"
+      "writer.desktop"
+    ];
+    name = "Офіс";
+  };
+
+  "org/gnome/desktop/app-folders/folders/cf_settings" = {
+    apps = [
+      "ca.desrt.dconf-editor.desktop"
+      "org.gnome.Extensions.desktop"
+      "org.gnome.Settings.desktop"
+      "org.gnome.tweaks.desktop"
+    ];
+    name = "Налаштування";
+  };
+
+  "org/gnome/desktop/app-folders/folders/cf_sound_video" = {
+    apps = [
+      "io.github.celluloid_player.Celluloid.desktop"
+      "org.gnome.Cheese.desktop"
+      "org.gnome.SoundRecorder.desktop"
+      "org.pipewire.Helvum.desktop"
+    ];
+    name = "Звук та відео";
   };
 }
