@@ -90,7 +90,7 @@
       "org.telegram.desktop.desktop:2"
       "vesktop.desktop:3"
       "steam.desktop:4"
-      "org.gnome.Rhythmbox3.desktop:5"
+      "org.gnome.Rhythmbox3.desktop:6"
       "org.nicotine_plus.Nicotine.desktop:6"
       "transmission-gtk.desktop:6"
     ];

@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:
 
 {
+  imports = [ inputs.steam-presence.nixosModules.steam-presence ];
+  
   nix = {
     package = pkgs.lix;
     
@@ -24,7 +26,6 @@
       "firefox"
       "geary"
       "htop"
-      "steam"
       "vim"
     ];
     mkEnabled = name: { ${name}.enable = true; };
@@ -36,7 +37,10 @@
     gnupg.agent.enable = true;
     firefox.preferences = {
       enable = true;
-      "browser.tabs.groups.enabled" = true;
+      browser = {
+        tabs.groups.enabled = true;
+        quitShortcut.disabled = true;
+      };
     };
     regreet = with pkgs; {
       enable = true;
@@ -55,6 +59,18 @@
       theme = {
         name = "Materia-dark";
         package = materia-theme;
+      };
+    };
+    steam = {
+      enable = true;
+      presence = {
+        enable = true;
+        steamApiKeyFile = "/ssdata/private/secrets/steam-presence/steam";
+        userIds = [ "76561199734028422" ];
+        coverArt.steamGridDB = {
+          enable = true;
+          apiKeyFile = "/ssdata/private/secrets/steam-presence/steamgriddb";
+        };
       };
     };
   } enabled;
@@ -97,7 +113,6 @@
       ];
 
       programPackages = with pkgs; [
-        ario
         baobab
         celluloid
         emacs30-pgtk
@@ -111,6 +126,7 @@
         libreoffice-still
         nautilus
         nicotine-plus
+        rhythmbox
         telegram-desktop
         transmission_4-gtk
         vesktop

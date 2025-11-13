@@ -74,34 +74,6 @@
   in {
     gnome.core-apps.enable = false;
     
-    mpd = {
-      enable = true;
-      credentials = [
-        {
-          passwordFile = "${secrets_dir}/mpd/password";
-          permissions = [ "read" "add" "control" ];
-        }
-      ];
-      musicDirectory = "/ssdata/music";
-      extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "PipeWire Sound Server"
-        }
-      '';
-      startWhenNeeded = true;
-    };
-
-    mpdscribble = {
-      enable = true;
-      endpoints = {
-        "last.fm" = {
-          username = "orest58008";
-          passwordFile = "${secrets_dir}/mpdscribble/last.fm/password";
-        };
-      };
-    };
-    
     openssh = {
       enable = true;
       openFirewall = true;
