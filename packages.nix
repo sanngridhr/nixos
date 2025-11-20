@@ -1,10 +1,19 @@
 { pkgs, inputs, ... }:
 
 {
-  imports = [ inputs.steam-presence.nixosModules.steam-presence ];
+  imports = [
+    inputs.steam-presence.nixosModules.steam-presence
+    inputs.aagl.nixosModules.default
+  ];
   
   nix = {
     package = pkgs.lix;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
     
     settings = {
       auto-optimise-store = true;
@@ -16,7 +25,9 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   
   programs = let
     enabled = [
@@ -26,10 +37,16 @@
       "firefox"
       "geary"
       "htop"
+      "starship"
       "vim"
     ];
     mkEnabled = name: { ${name}.enable = true; };
   in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
+    bash = {
+      blesh.enable = true;
+      completion.enable = true;
+      vteIntegration = true;
+    };
     git = {
       enable = true;
       lfs.enable = true;
@@ -77,25 +94,16 @@
 
   environment = {
     systemPackages = let
-      _unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
+      unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = with pkgs; [
-        binutils
-        elvish
         eza
-        gcc
-        gnumake
         imagemagick
-        linuxHeaders
         nil
-        starship
         steam-run
         tealdeer
         trash-cli
-        unar
-        wineWowPackages.wayland
         wl-clipboard
-        yt-dlp
       ];
 
       desktopPackages = with pkgs; [
@@ -114,7 +122,9 @@
 
       programPackages = with pkgs; [
         baobab
+        cartridges
         celluloid
+        dconf-editor
         emacs30-pgtk
         eog
         ghostty
@@ -123,7 +133,7 @@
         gnome-tweaks
         helvum
         inkscape
-        libreoffice-still
+        libreoffice
         nautilus
         nicotine-plus
         rhythmbox

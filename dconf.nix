@@ -84,7 +84,7 @@
       "firefox.desktop"
       "org.telegram.desktop.desktop"
       "vesktop.desktop"
-      "steam.desktop"
+      "page.kramo.Cartridges.desktop"
       "emacs.desktop"
       "pycharm-community.desktop"
       "writer.desktop"
@@ -105,6 +105,7 @@
       "firefox.desktop:1"
       "org.telegram.desktop.desktop:2"
       "vesktop.desktop:3"
+      "page.kramo.Cartridges.desktop:4"
       "steam.desktop:4"
       "org.gnome.Rhythmbox3.desktop:6"
       "org.nicotine_plus.Nicotine.desktop:6"
@@ -146,6 +147,14 @@
       "vim.desktop"
     ];
     name = "Редактори";
+  };
+
+  "org/gnome/desktop/app-folders/folders/cf_games" = {
+    apps = [
+      "anime-game-launcher.desktop"
+      "steam.desktop"
+    ];
+    name = "Ігри";
   };
 
   "org/gnome/desktop/app-folders/folders/cf_graphics" = {

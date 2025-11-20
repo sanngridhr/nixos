@@ -1,19 +1,17 @@
 {
   inputs = {
-    home-manager = {
-      url                    = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
+    
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    steam-presence = {
-      url                    = "github:JustTemmie/steam-presence";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    steam-presence.url = "github:JustTemmie/steam-presence";
+    steam-presence.inputs.nixpkgs.follows = "nixpkgs";
     
     nixos-hardware.url   = "github:NixOS/nixos-hardware";
-
-    nixpkgs.url          = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url          = "github:NixOS/nixpkgs/nixos-25.05";
   };
   
   outputs = { self, nixpkgs, ... }@inputs:

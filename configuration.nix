@@ -124,7 +124,7 @@
     isNormalUser = true;
     description = "Орест";
     extraGroups = [ "docker" "networkmanager" "wheel" "input" ];
-    shell = pkgs.elvish;
+    shell = pkgs.bash;
   };
 
   virtualisation.docker = {
