@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, globalVariables, ... }:
 
 {
   imports = [
@@ -45,7 +45,16 @@
     bash = {
       blesh.enable = true;
       completion.enable = true;
+      interactiveShellInit = "source \"$XDG_CONFIG_HOME/bash/rc.bash\"";
       vteIntegration = true;
+      shellAliases = {
+        cat = "bat -n";
+        cp = "cp -v";
+        ls = "eza -F -Ghl --git --icons";
+        mkdir = "mkdir -v";
+        mv = "mv -v";
+        rm = "trash-put -v";
+      };
     };
     git = {
       enable = true;
@@ -58,6 +67,14 @@
         tabs.groups.enabled = true;
         quitShortcut.disabled = true;
       };
+    };
+    npm = {
+      npmrc = ''
+        prefix=${globalVariables.xdgDataHome}/npm
+        cache=${globalVariables.xdgCacheHome}/npm
+        init-module=${globalVariables.xdgConfigHome}/npm/config/npm-init.js
+        tmp=/tmp/npm
+      '';
     };
     regreet = with pkgs; {
       enable = true;
@@ -76,6 +93,9 @@
       theme = {
         name = "Materia-dark";
         package = materia-theme;
+      };
+      settings = {
+        background.path = globalVariables.background;
       };
     };
     steam = {
@@ -98,6 +118,7 @@
 
       consolePackages = with pkgs; [
         eza
+        jq
         imagemagick
         nil
         steam-run
@@ -127,11 +148,10 @@
         dconf-editor
         emacs30-pgtk
         eog
-        ghostty
+        unstable.ghostty
         gimp
         gnome-calculator
         gnome-tweaks
-        helvum
         inkscape
         libreoffice
         nautilus

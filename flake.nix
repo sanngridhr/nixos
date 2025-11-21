@@ -18,12 +18,21 @@
     let
       nixos-hardware = inputs.nixos-hardware.nixosModules;
 
+      globalVariables = {
+        background = self + "/wallpapers/FQ0b2HVaQAALs6w.jpg";
+        xdgCacheHome = "$HOME/.cache";
+        xdgConfigHome = "$HOME/.config";
+        xdgDataHome = "$HOME/.local/share";
+        xdgStateHome = "$HOME/.local/state";
+      };
+      
       commonModules = [
         ./configuration.nix
         ./packages.nix
         inputs.home-manager.nixosModules.home-manager {
           home-manager = {
             backupFileExtension = "bak";
+            extraSpecialArgs = { inherit globalVariables; };
             useGlobalPkgs = true;
             useUserPackages = true;
             users.orest = import ./home.nix;
@@ -34,7 +43,7 @@
       nixosConfigurations = {
         GLaDOS = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs globalVariables; };
           modules = commonModules ++ [
             { networking.hostName = "GLaDOS"; }
             ./hardware/GLaDOS.nix
@@ -45,7 +54,7 @@
 
         Adventure = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs globalVariables; };
           modules = commonModules ++ [
             { networking.hostName = "Adventure"; }
             ./hardware/Adventure.nix

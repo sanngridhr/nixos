@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, globalVariables, ... }:
 
 {
   home = {
@@ -7,5 +7,5 @@
     stateVersion = "24.11"; # Don't change!
   };
 
-  dconf.settings = import ./dconf.nix { inherit lib; };
+  dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
 }

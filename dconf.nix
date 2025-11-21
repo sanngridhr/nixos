@@ -1,6 +1,11 @@
-{ lib, ... }:
+{ lib, globalVariables, ... }:
 
 {
+  "org/gnome/desktop/background" = {
+    picture-uri = "file://${globalVariables.background}";
+    picture-uri-dark = "file://${globalVariables.background}";
+  };
+  
   "org/gnome/desktop/input-sources" = {
     per-window = false;
     sources = with lib.hm.gvariant; [
