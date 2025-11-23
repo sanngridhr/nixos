@@ -31,7 +31,6 @@
   
   programs = let
     enabled = [
-      "bat"
       "evince"
       "file-roller"
       "firefox"
@@ -45,15 +44,35 @@
     bash = {
       blesh.enable = true;
       completion.enable = true;
-      interactiveShellInit = "source \"$XDG_CONFIG_HOME/bash/rc.bash\"";
+      interactiveShellInit = "export HISTFILE=${globalVariables.xdgStateHome}/bash/bashhist";
       vteIntegration = true;
       shellAliases = {
-        cat = "bat -n";
+        cat = "bat";
         cp = "cp -v";
         ls = "eza -F -Ghl --git --icons";
         mkdir = "mkdir -v";
         mv = "mv -v";
         rm = "trash-put -v";
+        nrs = "nixos-rebuild switch --use-remote-sudo --log-format multiline-with-logs";
+        ga = "git add .";
+        gc = "git commit";
+        gch = "git checkout";
+        gp = "git push";
+        gpl = "git pull";
+        grep = "greep -ni --color";
+      };
+    };
+    bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [
+        batman
+      ];
+      settings = {
+        italic-text = "always";
+        style = "full";
+        map-syntax = [
+          "\.?bashhist:\"Bourne Again Shell (bash)\""
+        ];
       };
     };
     git = {
@@ -113,40 +132,41 @@
   } enabled;
 
   environment = {
-    systemPackages = let
+    systemPackages = with pkgs; let
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
-      consolePackages = with pkgs; [
+      consolePackages = [
         eza
         jq
         imagemagick
         nil
         steam-run
         tealdeer
+        texlivePackages.fontspec
+        texlivePackages.wrapfig
         trash-cli
         wl-clipboard
       ];
-
-      desktopPackages = with pkgs; [
-        gnomeExtensions.appindicator
-        gnomeExtensions.auto-move-windows
-        gnomeExtensions.just-perfection
-        gnomeExtensions.workspaces-indicator-by-open-apps
-        hunspell
-        hunspellDicts.en_GB-ise
-        hunspellDicts.en_US
-        hunspellDicts.uk_UA
+      
+      desktopPackages = [
         materia-theme
         papirus-icon-theme
         posy-cursors
       ];
 
-      programPackages = with pkgs; [
+      gnomePackages = with gnomeExtensions; [
+        appindicator
+        auto-move-windows
+        just-perfection
+        workspaces-indicator-by-open-apps
+      ];
+
+      programPackages = [
         baobab
         cartridges
         celluloid
         dconf-editor
-        emacs30-pgtk
+        emacs-pgtk
         eog
         unstable.ghostty
         gimp
@@ -157,16 +177,35 @@
         nautilus
         nicotine-plus
         rhythmbox
+        sleepy-launcher
         telegram-desktop
         transmission_4-gtk
         vesktop
         zoom-us
       ];
 
+      hunspell = hunspellWithDicts [
+        hunspellDicts.en_GB-ise
+        hunspellDicts.en_US
+        hunspellDicts.uk_UA
+      ];
+
+      texlive = texliveBasic.withPackages (ps: with ps; [
+        capt-of
+        fontspec
+        latexmk
+        ulem
+        wrapfig
+      ]);
+
     in builtins.concatLists [
       consolePackages
       desktopPackages
+      gnomePackages
       programPackages
+    ] ++ [
+      hunspell
+      texlive
     ];
   };
 }

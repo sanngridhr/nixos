@@ -25,6 +25,11 @@
         xdgDataHome = "$HOME/.local/share";
         xdgStateHome = "$HOME/.local/state";
       };
+
+      commonSettings = {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs globalVariables; };
+      };
       
       commonModules = [
         ./configuration.nix
@@ -41,26 +46,22 @@
       ];
     in {
       nixosConfigurations = {
-        GLaDOS = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs globalVariables; };
+        GLaDOS = nixpkgs.lib.nixosSystem (commonSettings // {
           modules = commonModules ++ [
             { networking.hostName = "GLaDOS"; }
             ./hardware/GLaDOS.nix
             nixos-hardware.common-cpu-amd
             nixos-hardware.common-gpu-amd
           ];
-        };
+        });
 
-        Adventure = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs globalVariables; };
+        Adventure = nixpkgs.lib.nixosSystem (commonSettings {
           modules = commonModules ++ [
             { networking.hostName = "Adventure"; }
             ./hardware/Adventure.nix
             nixos-hardware.lenovo-thinkpad-t480s
           ];
-        };
+        });
       };
     };
 }

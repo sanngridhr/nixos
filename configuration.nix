@@ -20,7 +20,7 @@
 
   environment.sessionVariables = rec {
     EDITOR = "emacs -nw";
-    MANPAGER = "bat -l man -p";
+    MANPAGER = "batman";
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
 
     XDG_CACHE_HOME = globalVariables.xdgCacheHome;
