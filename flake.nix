@@ -3,7 +3,7 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     steam-presence.url = "github:JustTemmie/steam-presence";
@@ -11,7 +11,7 @@
     
     nixos-hardware.url   = "github:NixOS/nixos-hardware";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url          = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url          = "github:NixOS/nixpkgs/nixos-25.11";
   };
   
   outputs = { self, nixpkgs, ... }@inputs:
@@ -24,11 +24,6 @@
         xdgConfigHome = "$HOME/.config";
         xdgDataHome = "$HOME/.local/share";
         xdgStateHome = "$HOME/.local/state";
-      };
-
-      commonSettings = {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs globalVariables; };
       };
       
       commonModules = [
@@ -46,22 +41,22 @@
       ];
     in {
       nixosConfigurations = {
-        GLaDOS = nixpkgs.lib.nixosSystem (commonSettings // {
+        GLaDOS = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs globalVariables; };
           modules = commonModules ++ [
-            { networking.hostName = "GLaDOS"; }
             ./hardware/GLaDOS.nix
             nixos-hardware.common-cpu-amd
             nixos-hardware.common-gpu-amd
           ];
-        });
+        };
 
-        Adventure = nixpkgs.lib.nixosSystem (commonSettings {
+        Adventure = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs globalVariables; };
           modules = commonModules ++ [
-            { networking.hostName = "Adventure"; }
             ./hardware/Adventure.nix
             nixos-hardware.lenovo-thinkpad-t480s
           ];
-        });
+        };
       };
     };
 }

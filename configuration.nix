@@ -73,6 +73,7 @@
   };
 
   services = {
+    desktopManager.gnome.enable = true;
     gnome.core-apps.enable = false;
     
     openssh = {
@@ -100,8 +101,6 @@
     xserver = {
       enable = true;
       excludePackages = with pkgs; [ xterm xorg.xprop ];
-
-      desktopManager.gnome.enable = true;
     };
 
     yggdrasil.enable = true;
@@ -113,6 +112,8 @@
     Defaults env_keep += \"EDITOR VIMINIT XDG_CONFIG_HOME XDG_STATE_HOME\"";
   };
 
+  swapDevices = [ { device = "/dev/disk/by-label/SWAP"; } ];
+  
   systemd.services.mpd = {
     serviceConfig = {
       ReadWritePaths = "/ssdata/secrets/mpd";

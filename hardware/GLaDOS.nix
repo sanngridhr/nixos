@@ -44,14 +44,10 @@
     };
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-label/SWAP"; }];
-
-  networking.useDHCP = lib.mkDefault true;
+  networking.hostName = "GLaDOS";
   # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp37s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

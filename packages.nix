@@ -32,12 +32,12 @@
   programs = let
     enabled = [
       "evince"
-      "file-roller"
       "firefox"
       "geary"
       "htop"
       "starship"
       "vim"
+      "zoom-us"
     ];
     mkEnabled = name: { ${name}.enable = true; };
   in builtins.foldl' (acc: name: acc // (mkEnabled name)) {
@@ -53,7 +53,7 @@
         mkdir = "mkdir -v";
         mv = "mv -v";
         rm = "trash-put -v";
-        nrs = "nixos-rebuild switch --use-remote-sudo --log-format multiline-with-logs";
+        nrs = "nixos-rebuild switch --sudo --log-format multiline-with-logs";
         ga = "git add .";
         gc = "git commit";
         gch = "git checkout";
@@ -140,10 +140,9 @@
         jq
         imagemagick
         nil
-        steam-run
+        nodejs
+        python3
         tealdeer
-        texlivePackages.fontspec
-        texlivePackages.wrapfig
         trash-cli
         wl-clipboard
       ];
@@ -168,6 +167,8 @@
         dconf-editor
         emacs-pgtk
         eog
+        file-roller
+        foliate
         unstable.ghostty
         gimp
         gnome-calculator
@@ -176,21 +177,20 @@
         libreoffice
         nautilus
         nicotine-plus
+        jetbrains.pycharm-community
         rhythmbox
-        sleepy-launcher
         telegram-desktop
         transmission_4-gtk
         vesktop
-        zoom-us
       ];
 
-      hunspell = hunspellWithDicts [
+      hunspell' = hunspell.withDicts (ds: with ds; [
         hunspellDicts.en_GB-ise
         hunspellDicts.en_US
         hunspellDicts.uk_UA
-      ];
+      ]);
 
-      texlive = texliveBasic.withPackages (ps: with ps; [
+      texlive' = texliveBasic.withPackages (ps: with ps; [
         capt-of
         fontspec
         latexmk
@@ -204,8 +204,8 @@
       gnomePackages
       programPackages
     ] ++ [
-      hunspell
-      texlive
+      hunspell'
+      texlive'
     ];
   };
 }
