@@ -37,6 +37,7 @@
       "htop"
       "starship"
       "vim"
+      "xwayland"
       "zoom-us"
     ];
     mkEnabled = name: { ${name}.enable = true; };
@@ -129,6 +130,31 @@
         };
       };
     };
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        detachhead.basedpyright
+        ms-python.python
+        vscodevim.vim
+        (pkgs.vscode-utils.buildVscodeExtension {
+          pname = "flexoki-theme";
+          
+          src = ./static/flexoki-vscode;
+          sourceRoot = ".";
+          unpackPhase = ''
+            runHook preUnpack
+            cp -r $src/* .
+            runHook postUnpack
+          '';
+          
+          vscodeExtName = "flexoki-theme";
+          vscodeExtPublisher = "localhost";
+          vscodeExtUniqueId = "localhost.flexoki-theme";
+          version = "1.0.0";
+        })
+      ];
+    };
   } enabled;
 
   environment = {
@@ -136,12 +162,10 @@
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = [
+        fd
         eza
         jq
         imagemagick
-        nil
-        nodejs
-        python3
         tealdeer
         trash-cli
         wl-clipboard
@@ -153,6 +177,14 @@
         posy-cursors
       ];
 
+      devPackages = [
+        emacs-pgtk
+        nil
+        nodejs
+        jetbrains.pycharm-professional
+        python3
+      ];
+      
       gnomePackages = with gnomeExtensions; [
         appindicator
         auto-move-windows
@@ -165,7 +197,6 @@
         cartridges
         celluloid
         dconf-editor
-        emacs-pgtk
         eog
         file-roller
         foliate
@@ -177,7 +208,6 @@
         libreoffice
         nautilus
         nicotine-plus
-        jetbrains.pycharm-community
         rhythmbox
         telegram-desktop
         transmission_4-gtk
@@ -185,9 +215,9 @@
       ];
 
       hunspell' = hunspell.withDicts (ds: with ds; [
-        hunspellDicts.en_GB-ise
-        hunspellDicts.en_US
-        hunspellDicts.uk_UA
+        en_GB-ise
+        en_US
+        uk_UA
       ]);
 
       texlive' = texliveBasic.withPackages (ps: with ps; [
@@ -201,6 +231,7 @@
     in builtins.concatLists [
       consolePackages
       desktopPackages
+      devPackages
       gnomePackages
       programPackages
     ] ++ [

@@ -87,17 +87,25 @@
 
     favorite-apps = [
       "firefox.desktop"
+      #
       "org.telegram.desktop.desktop"
+      #
       "vesktop.desktop"
+      #
       "page.kramo.Cartridges.desktop"
+      #
+      "code.desktop"
+      "codium.desktop"
       "emacs.desktop"
-      "pycharm-community.desktop"
+      "pycharm-professional.desktop"
       "writer.desktop"
+      #
       "org.gnome.Rhythmbox3.desktop"
       "transmission-gtk.desktop"
+      #
+      "com.mitchellh.ghostty.desktop"
       "org.gnome.Calculator.desktop"
       "org.gnome.Nautilus.desktop"
-      "com.mitchellh.ghostty.desktop"
     ];
   };
 
@@ -112,6 +120,9 @@
       "vesktop.desktop:3"
       "page.kramo.Cartridges.desktop:4"
       "steam.desktop:4"
+      "code.desktop:5"
+      "codium.desktop:5"
+      "pycharm-professional.desktop:5"
       "org.gnome.Rhythmbox3.desktop:6"
       "org.nicotine_plus.Nicotine.desktop:6"
       "transmission-gtk.desktop:6"
@@ -147,6 +158,7 @@
   
   "org/gnome/desktop/app-folders/folders/cf_editors" = {
     apps = [
+      "code.desktop"
       "codium.desktop"
       "emacsclient.desktop"
       "vim.desktop"

@@ -24,6 +24,7 @@
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
 
     XDG_CACHE_HOME = globalVariables.xdgCacheHome;
+    NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm";
     
     XDG_CONFIG_HOME = globalVariables.xdgConfigHome;
     "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
@@ -32,12 +33,16 @@
     PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/rc.py";
     GVIMINIT=''let $MYGVIMRC="${XDG_CONFIG_HOME}/vim/gvimrc" | source $MYGVIMRC'';
     VIMINIT=''let $MYVIMRC="${XDG_CONFIG_HOME}/vim/vimrc" | source $MYVIMRC'';
+    NPM_CONFIG_INIT_MODULE="${XDG_CONFIG_HOME}/npm/config/npm-init.js";
     
     XDG_DATA_HOME = globalVariables.xdgDataHome;
+    DOTNET_CLI_HOME="${XDG_DATA_HOME}/dotnet";
     GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
     SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
 
-    XDG_STATE_HOME = "$HOME/.local/state";
+    XDG_STATE_HOME = globalVariables.xdgStateHome;
+
+    NPM_CONFIG_TMP="$XDG_RUNTIME_DIR/npm";
   };
   
   fonts = import ./fonts.nix { inherit pkgs inputs; };
@@ -68,6 +73,7 @@
   };
   
   qt = {
+    enable = true;
     platformTheme = "gnome";
     style = "adwaita-dark";
   };
@@ -97,13 +103,6 @@
     udev.packages = with pkgs; [
       gnome-settings-daemon
     ];
-
-    xserver = {
-      enable = true;
-      excludePackages = with pkgs; [ xterm xorg.xprop ];
-    };
-
-    yggdrasil.enable = true;
   };
 
   security = {
@@ -113,12 +112,6 @@
   };
 
   swapDevices = [ { device = "/dev/disk/by-label/SWAP"; } ];
-  
-  systemd.services.mpd = {
-    serviceConfig = {
-      ReadWritePaths = "/ssdata/secrets/mpd";
-    };
-  };
   
   time.timeZone = "Europe/Kyiv";
 
@@ -134,7 +127,12 @@
     autoPrune.enable = true;
   };
 
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config.common.default = "gnome";
+    extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+  };
   
   system.stateVersion = "24.11"; # Don't change!
 }

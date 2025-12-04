@@ -19,7 +19,7 @@
       nixos-hardware = inputs.nixos-hardware.nixosModules;
 
       globalVariables = {
-        background = self + "/wallpapers/122259941_p0.jpg";
+        background = ./static/wallpapers/122259941_p0.jpg;
         xdgCacheHome = "$HOME/.cache";
         xdgConfigHome = "$HOME/.config";
         xdgDataHome = "$HOME/.local/share";
