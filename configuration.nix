@@ -44,7 +44,6 @@
 
     XDG_STATE_HOME = globalVariables.xdgStateHome;
 
-    NIXOS_OZONE_WL = 1;
     NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
   };
   
@@ -135,6 +134,12 @@
     xdgOpenUsePortal = true;
     config.common.default = "gnome";
     extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
   };
   
   system.stateVersion = "24.11"; # Don't change!

@@ -38,6 +38,20 @@
         bat = final.optimiseRust prev.bat;
         eza = final.optimiseRust prev.eza;
         fd = final.optimiseRust prev.fd;
+        
+        optimiseElectron = pkg: binaryName: pkg.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ final.makeWrapper ];
+          postFixup = (old.postFixup or "") + ''
+            wrapProgram $out/bin/${binaryName} \
+              --add-flags "--enable-features=UseOzonePlatform" \
+              --add-flags "--ozone-platform=wayland" \
+              --add-flags "--enable-gpu-rasterization" \
+              --add-flags "--enable-zerocopy"
+          '';
+        });
+
+        vesktop = final.optimiseElectron prev.vesktop "vesktop";
+        vscodium = final.optimiseElectron prev.vscodium "codium";
       })
     ];
   };
