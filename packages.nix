@@ -25,16 +25,36 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      (final: prev: {
+        optimiseRust = pkg: pkg.overrideAttrs (old: {
+          env = (old.env or {}) // {
+            RUSTFLAGS = "-C target-cpu=native";
+          };
+        });
+
+        bat = final.optimiseRust prev.bat;
+        eza = final.optimiseRust prev.eza;
+        fd = final.optimiseRust prev.fd;
+      })
+    ];
   };
   
   programs = let
+    vscodeUnpack =  ''
+      runHook preUnpack
+      cp -r $src/* .
+      runHook postUnpack
+    '';
     enabled = [
       "evince"
       "firefox"
       "geary"
+      "gpaste"
       "htop"
+      # "sleepy-launcher"
       "starship"
       "vim"
       "xwayland"
@@ -60,7 +80,7 @@
         gch = "git checkout";
         gp = "git push";
         gpl = "git pull";
-        grep = "greep -ni --color";
+        grep = "grep -ni --color";
       };
     };
     bat = {
@@ -135,6 +155,7 @@
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
         detachhead.basedpyright
+        docker.docker
         ms-python.python
         vscodevim.vim
         (pkgs.vscode-utils.buildVscodeExtension {
@@ -142,11 +163,7 @@
           
           src = ./static/flexoki-vscode;
           sourceRoot = ".";
-          unpackPhase = ''
-            runHook preUnpack
-            cp -r $src/* .
-            runHook postUnpack
-          '';
+          unpackPhase = vscodeUnpack;
           
           vscodeExtName = "flexoki-theme";
           vscodeExtPublisher = "localhost";
@@ -162,13 +179,15 @@
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = [
-        fd
+        devpod
         eza
-        jq
+        fd
         imagemagick
+        jq
+        mupdf
+        sccache
         tealdeer
         trash-cli
-        wl-clipboard
       ];
       
       desktopPackages = [
@@ -206,7 +225,7 @@
         gnome-tweaks
         inkscape
         libreoffice
-        nautilus
+        nemo
         nicotine-plus
         rhythmbox
         telegram-desktop

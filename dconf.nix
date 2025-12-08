@@ -80,6 +80,7 @@
     disable-user-extensions = false;
 
     enabled-extensions = [
+      "GPaste@gnome-shell-extensions.gnome.org"
       "appindicatorsupport@rgcjonas.gmail.com"
       "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
       "workspaces-by-open-apps@favo02.github.com"
@@ -105,7 +106,7 @@
       #
       "com.mitchellh.ghostty.desktop"
       "org.gnome.Calculator.desktop"
-      "org.gnome.Nautilus.desktop"
+      "nemo.desktop"
     ];
   };
 

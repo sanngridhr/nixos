@@ -3,6 +3,8 @@
 {
   boot = {
     crashDump.enable = true;
+
+    kernelPackages = pkgs.linuxPackages_zen;
     
     loader = {
       efi.canTouchEfiVariables = true;
@@ -42,7 +44,8 @@
 
     XDG_STATE_HOME = globalVariables.xdgStateHome;
 
-    NPM_CONFIG_TMP="$XDG_RUNTIME_DIR/npm";
+    NIXOS_OZONE_WL = 1;
+    NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
   };
   
   fonts = import ./fonts.nix { inherit pkgs inputs; };
