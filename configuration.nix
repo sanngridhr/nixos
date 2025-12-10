@@ -127,6 +127,8 @@
   virtualisation.docker = {
     enable = true;
     autoPrune.enable = true;
+    extraPackages = with pkgs; [ docker-buildx ];
+    storageDriver = "overlay2";
   };
 
   xdg.portal = {

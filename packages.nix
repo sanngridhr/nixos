@@ -22,7 +22,7 @@
         "nix-command"
       ];
       use-xdg-base-directories = true;
-    };
+    } // inputs.aagl.nixConfig;
   };
 
   nixpkgs = {
@@ -68,7 +68,7 @@
       "geary"
       "gpaste"
       "htop"
-      # "sleepy-launcher"
+      "sleepy-launcher"
       "starship"
       "vim"
       "xwayland"
