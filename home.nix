@@ -18,11 +18,15 @@
         "tealdeer"
       ];
       home = config.home.homeDirectory;
-      mkConfig = program: {
-        name = "${home}/.config/${program}";
-        value = { source = config.lib.file.mkOutOfStoreSymlink "${home}/config/${program}"; };
+      xdgDir = home + "/.config/";
+      repoDir = home + "/config/";
+      mkConfigLink = path: {
+        name = xdgDir + path;
+        value = { source = config.lib.file.mkOutOfStoreSymlink (repoDir + path); };
       };
-    in builtins.listToAttrs (map mkConfig programs);
+    in builtins.listToAttrs (map mkConfigLink (programs ++ [
+      "VSCodium/User/settings.json"
+    ]));
   };
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };

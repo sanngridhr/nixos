@@ -56,7 +56,7 @@
         cat = "bat";
         cp = "cp -v";
         ls = "eza -F -Ghl --git --icons";
-        mkdir = "mkdir -v";
+        mkdir = "mkdir -pv";
         mv = "mv -v";
         rm = "trash-put -v";
         nrs = "nixos-rebuild switch --sudo --log-format multiline-with-logs";
