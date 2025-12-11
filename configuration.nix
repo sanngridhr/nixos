@@ -45,6 +45,7 @@
     XDG_STATE_HOME = globalVariables.xdgStateHome;
 
     NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+    NIXOS_OZONE_WL = 1;
   };
   
   fonts = import ./fonts.nix { inherit pkgs inputs; };
