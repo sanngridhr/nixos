@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.steam-presence.nixosModules.steam-presence
-    inputs.aagl.nixosModules.default
   ];
   
   nix = {
@@ -22,7 +21,7 @@
         "nix-command"
       ];
       use-xdg-base-directories = true;
-    } // inputs.aagl.nixConfig;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -39,7 +38,6 @@
       "geary"
       "gpaste"
       "htop"
-      "sleepy-launcher"
       "starship"
       "vim"
       "xwayland"
@@ -185,7 +183,6 @@
         emacs-pgtk
         nil
         nodejs
-        jetbrains.pycharm-professional
         python3
       ];
       

@@ -1,8 +1,5 @@
 {
   inputs = {
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-25.11";
-    aagl.inputs.nixpkgs.follows = "nixpkgs";
-    
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 

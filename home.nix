@@ -10,7 +10,6 @@
       programs = [
         "bottom"
         "cabal"
-        "emacs"
         "gallery-dl"
         "ghostty"
         "git"
@@ -26,6 +25,10 @@
       };
     in builtins.listToAttrs (map mkConfigLink (programs ++ [
       "VSCodium/User/settings.json"
+      "emacs/init.el"
+      "emacs/elpaca-setup.el"
+      "emacs/early-init.el"
+      "emacs/GNUEmacs.png"
     ]));
   };
 
