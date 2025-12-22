@@ -16,10 +16,8 @@
     
     settings = {
       auto-optimise-store = true;
-      experimental-features = [
-        "flakes"
-        "nix-command"
-      ];
+      experimental-features = [ "flakes" "nix-command" ];
+      trusted-users = [ "@wheel" ];
       use-xdg-base-directories = true;
     };
   };
@@ -162,7 +160,7 @@
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = [
-        devpod
+        bubblewrap
         eza
         fd
         imagemagick

@@ -132,11 +132,12 @@
     storageDriver = "overlay2";
   };
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    config.common.default = "gnome";
-    extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+  xdg = {
+    icons.fallbackCursorThemes = [ "Posy_Cursor" ];
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+    };
   };
 
   zramSwap = {
