@@ -94,6 +94,7 @@
       "vesktop.desktop"
       #
       "page.kramo.Cartridges.desktop"
+      "steam.desktop"
       #
       "code.desktop"
       "codium.desktop"

@@ -16,7 +16,7 @@
     
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "flakes" "nix-command" ];
+      experimental-features = [ "flakes" "nix-command" "pipe-operator" ];
       trusted-users = [ "@wheel" ];
       use-xdg-base-directories = true;
     };
@@ -97,28 +97,6 @@
         tmp=/tmp/npm
       '';
     };
-    regreet = with pkgs; {
-      enable = true;
-      cursorTheme = {
-        name = "Posy_Cursor";
-        package = posy-cursors;
-      };
-      font = {
-        name = "Source Sans 3";
-        package = source-sans;
-      };
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = papirus-icon-theme;
-      };
-      theme = {
-        name = "Materia-dark";
-        package = materia-theme;
-      };
-      settings = {
-        background.path = globalVariables.background;
-      };
-    };
     steam = {
       enable = true;
       presence = {
@@ -135,9 +113,13 @@
       enable = true;
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
+        charliermarsh.ruff
+        dbaeumer.vscode-eslint
         detachhead.basedpyright
         docker.docker
         ms-python.python
+        esbenp.prettier-vscode
+        tamasfe.even-better-toml
         vscodevim.vim
         (pkgs.vscode-utils.buildVscodeExtension {
           pname = "flexoki-theme";
@@ -160,7 +142,6 @@
       unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
 
       consolePackages = [
-        bubblewrap
         eza
         fd
         imagemagick
@@ -175,13 +156,16 @@
         materia-theme
         papirus-icon-theme
         posy-cursors
+        wl-clipboard
       ];
 
       devPackages = [
         emacs-pgtk
+        gnumake
         nil
         nodejs
-        python3
+        python3'
+        ruff
       ];
       
       gnomePackages = with gnomeExtensions; [
@@ -193,7 +177,6 @@
 
       programPackages = [
         baobab
-        cartridges
         celluloid
         dconf-editor
         eog
@@ -205,18 +188,23 @@
         gnome-tweaks
         inkscape
         libreoffice
-        nemo
+        nemo-with-extensions
         nicotine-plus
         rhythmbox
         telegram-desktop
         transmission_4-gtk
         vesktop
       ];
-
+      
       hunspell' = hunspell.withDicts (ds: with ds; [
         en_GB-ise
         en_US
         uk_UA
+      ]);
+
+      python3' = python3.withPackages (ps: with ps; [
+        ps.django-stubs
+        ps.django-stubs-ext
       ]);
 
       texlive' = texliveBasic.withPackages (ps: with ps; [

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Startup Sound
+Exec=pw-play /etc/nixos/static/startup-sound/Windows_Vista_7_8_10.wav

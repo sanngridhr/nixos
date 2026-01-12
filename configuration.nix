@@ -10,6 +10,7 @@
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = true;
+        configurationLimit = 20;
         memtest86.enable = true;
       };
     };
@@ -33,8 +34,8 @@
     DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
     JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
     PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/rc.py";
-    GVIMINIT=''let $MYGVIMRC="${XDG_CONFIG_HOME}/vim/gvimrc" | source $MYGVIMRC'';
-    VIMINIT=''let $MYVIMRC="${XDG_CONFIG_HOME}/vim/vimrc" | source $MYVIMRC'';
+    GVIMINIT=''source "${XDG_CONFIG_HOME}/vim/gvimrc"'';
+    VIMINIT=''source "${XDG_CONFIG_HOME}/vim/vimrc"'';
     NPM_CONFIG_INIT_MODULE="${XDG_CONFIG_HOME}/npm/config/npm-init.js";
     
     XDG_DATA_HOME = globalVariables.xdgDataHome;
@@ -83,6 +84,7 @@
 
   services = {
     desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
     gnome.core-apps.enable = false;
     
     openssh = {

@@ -1,4 +1,4 @@
-{ config, osConfig, lib, globalVariables, ... }:
+{ config, globalVariables, lib, osConfig, pkgs, ... }:
 
 {
   home = {
@@ -30,6 +30,19 @@
       "emacs/early-init.el"
       "emacs/GNUEmacs.png"
     ]));
+  };
+
+  xdg.autostart = {
+    enable = true;
+    entries = with builtins; [
+      ./static/startup-sound/startup-sound.desktop
+    ] ++ ({
+      firefox = "firefox";
+      telegram-desktop = "org.telegram.desktop";
+      vesktop = "vesktop";
+      steam = "steam";
+    } |> mapAttrs (package: entry: "${pkgs.${package}}/share/applications/${entry}.desktop")
+      |> attrValues);
   };
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
