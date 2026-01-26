@@ -107,7 +107,7 @@
       #
       "com.mitchellh.ghostty.desktop"
       "org.gnome.Calculator.desktop"
-      "nemo.desktop"
+      "org.gnome.Nautilus.desktop"
     ];
   };
 

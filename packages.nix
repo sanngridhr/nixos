@@ -157,7 +157,6 @@
         papirus-icon-theme
         posy-cursors
         wl-clipboard
-        xdg-desktop-portal
       ];
 
       devPackages = [
@@ -189,7 +188,7 @@
         gnome-tweaks
         inkscape
         libreoffice
-        nemo-with-extensions
+        nautilus
         nicotine-plus
         rhythmbox
         telegram-desktop
