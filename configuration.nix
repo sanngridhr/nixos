@@ -22,9 +22,12 @@
   };
 
   environment.sessionVariables = rec {
-    EDITOR = "emacs -nw";
-    MANPAGER = "batman";
+    EDITOR = "nvim";
+    GTK_USE_PORTAL = 1;
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+    MANPAGER = "batman";
+    NIXOS_OZONE_WL = 1;
+    QT_QPA_PLATFORM = "wayland";
 
     XDG_CACHE_HOME = globalVariables.xdgCacheHome;
     NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm";
@@ -46,7 +49,6 @@
     XDG_STATE_HOME = globalVariables.xdgStateHome;
 
     NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
-    NIXOS_OZONE_WL = 1;
   };
   
   fonts = import ./fonts.nix { inherit pkgs inputs; };
@@ -138,6 +140,10 @@
     icons.fallbackCursorThemes = [ "Posy_Cursor" ];
     portal = {
       enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+      ];
       xdgOpenUsePortal = true;
     };
   };

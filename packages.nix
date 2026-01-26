@@ -36,8 +36,8 @@
       "geary"
       "gpaste"
       "htop"
+      "neovim"
       "starship"
-      "vim"
       "xwayland"
       "zoom-us"
     ];
@@ -157,6 +157,7 @@
         papirus-icon-theme
         posy-cursors
         wl-clipboard
+        xdg-desktop-portal
       ];
 
       devPackages = [
