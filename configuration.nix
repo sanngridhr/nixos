@@ -22,12 +22,9 @@
   };
 
   environment.sessionVariables = rec {
-    EDITOR = "nvim";
-    GTK_USE_PORTAL = 1;
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     MANPAGER = "batman";
     NIXOS_OZONE_WL = 1;
-    QT_QPA_PLATFORM = "wayland";
 
     XDG_CACHE_HOME = globalVariables.xdgCacheHome;
     NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm";

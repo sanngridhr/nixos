@@ -36,7 +36,6 @@
       "geary"
       "gpaste"
       "htop"
-      "neovim"
       "starship"
       "xwayland"
       "zoom-us"
@@ -46,7 +45,10 @@
     bash = {
       blesh.enable = true;
       completion.enable = true;
-      interactiveShellInit = "export HISTFILE=${globalVariables.xdgStateHome}/bash/bashhist";
+      interactiveShellInit = ''
+        export HISTFILE=$XDG_STATE_HOME/bash/bashhist
+        export HISTCONTROL=ignoreboth:erasedups
+      '';
       vteIntegration = true;
       shellAliases = {
         cat = "bat";
@@ -88,6 +90,12 @@
         tabs.groups.enabled = true;
         quitShortcut.disabled = true;
       };
+    };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      withRuby = false;
+      withPython3 = false;
     };
     npm = {
       npmrc = ''
