@@ -102,6 +102,27 @@
     
     pulseaudio.enable = false;
 
+    syncthing = {
+      enable = true;
+      configDir = "${globalVariables.xdgConfigHome}/syncthing";
+      dataDir = "${globalVariables.xdgDataHome}/syncthing";
+      openDefaultPorts = true;
+      relay.enable = true;
+      user = "orest";
+      settings = {
+        devices = {
+          GLaDOS.id = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
+        };
+        folders = let
+          mkFolder = folder: path: { path = path; devices = devices; };
+          devices = [ "GLaDOS" ];
+          folders = {
+            "rpg".path = /data/rpg;
+          };
+        in builtins.mapAttrs mkFolder folders;
+      };
+    };
+    
     udev.packages = with pkgs; [
       gnome-settings-daemon
     ];
