@@ -1,4 +1,4 @@
-{ pkgs, inputs, globalVariables, ... }:
+{ config, pkgs, inputs, globalVariables, ... }:
 
 {
   boot = {
@@ -114,10 +114,11 @@
           GLaDOS.id = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
         };
         folders = let
-          mkFolder = folder: path: { path = path; devices = devices; };
+          mkFolder = name: folder: folder // { devices = devices; };
           devices = [ "GLaDOS" ];
           folders = {
-            "rpg".path = /data/rpg;
+            rpg.path = "/data/rpg";
+            "docs/edu".path = "/data/docs/edu";
           };
         in builtins.mapAttrs mkFolder folders;
       };
