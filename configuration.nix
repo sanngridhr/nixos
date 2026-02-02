@@ -111,16 +111,25 @@
       user = "orest";
       settings = {
         devices = {
-          GLaDOS.id = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
+          GLaDOS.id    = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
+          Adventure.id = "AYYMR2J-LFAKO2V-K4VNSNL-LRJQ254-4K6OCWV-EISSDRU-W5KGFTE-WHWIZAN";
         };
         folders = let
-          mkFolder = name: folder: folder // { devices = devices; };
-          devices = [ "GLaDOS" ];
+          sharedConfig = {
+            devices = [ "Adventure" "GLaDOS" ];
+            versioning = {
+              type = "simple";
+              params = {
+                keep = 3;
+                cleanoutDays = 7;
+              };
+            };
+          };
           folders = {
             rpg.path = "/data/rpg";
-            "docs/edu".path = "/data/docs/edu";
+            docs.path = "/data/docs";
           };
-        in builtins.mapAttrs mkFolder folders;
+        in builtins.mapAttrs (name: folder: folder // sharedConfig) folders;
       };
     };
     
