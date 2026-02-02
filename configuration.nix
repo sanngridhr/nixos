@@ -141,7 +141,7 @@
   users.users.orest = {
     isNormalUser = true;
     description = "Орест";
-    extraGroups = [ "docker" "networkmanager" "wheel" "input" ];
+    extraGroups = [ "docker" "networkmanager" "wheel" "input" "plugdev" ];
     shell = pkgs.bash;
   };
 
