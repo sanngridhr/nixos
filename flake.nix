@@ -19,7 +19,7 @@
       nixos-hardware = inputs.nixos-hardware.nixosModules;
 
       globalVariables = rec {
-        background = ./static/wallpapers/122259941_p0.jpg;
+        background = ./static/wallpapers/83822fe442ffe584c9c92985621f854f.jpg;
         _home = "/home/orest";
         xdgCacheHome = "${_home}/.cache";
         xdgConfigHome = "${_home}/.config";

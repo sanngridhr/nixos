@@ -22,7 +22,7 @@
   };
 
   "org/gnome/desktop/interface" = {
-    accent-color = "purple";
+    accent-color = "slate";
     color-scheme = "prefer-dark";
     cursor-size = 12;
     cursor-theme = "Posy_Cursor";
