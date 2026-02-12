@@ -112,7 +112,7 @@
       settings = {
         devices = {
           GLaDOS.id    = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
-          Adventure.id = "AYYMR2J-LFAKO2V-K4VNSNL-LRJQ254-4K6OCWV-EISSDRU-W5KGFTE-WHWIZAN";
+          Adventure.id = "PRJJANV-H57JF6J-7ILAOQW-BKIUWVP-K4SA2PF-ZCUMUNO-ZYCRKRP-BCL76A7";
         };
         folders = let
           sharedConfig = {
