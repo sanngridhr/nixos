@@ -32,6 +32,38 @@
     ]));
   };
 
+  services.unison = let
+    devices = [ "GLaDOS" "Adventure" ];
+
+    localHost = osConfig.networking.hostName;
+    remoteDevices = lib.filter (d: d != localHost) devices;
+
+    folders = [
+      { path = "/data/rpg"; }
+      { path = "/data/docs"; }
+    ];
+
+    unisonPairs =
+      lib.flatten (lib.map (folder:
+        lib.map (remote:
+          {
+            name  = "${lib.replaceStrings ["/"] ["_"] folder.path}-${remote}";
+            value = {
+              roots = [
+                folder.path
+                "ssh://user@${remote}/${folder.path}"
+              ];
+            };
+          }
+        ) remoteDevices
+      ) folders)
+        |> lib.listToAttrs;
+  in {
+    enable = true;
+    package = pkgs.unison;
+    pairs = unisonPairs;
+  };
+  
   xdg.autostart = {
     enable = true;
     entries = with builtins; [
