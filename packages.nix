@@ -127,6 +127,7 @@
         dbaeumer.vscode-eslint
         detachhead.basedpyright
         docker.docker
+        github.vscode-github-actions
         ms-python.python
         esbenp.prettier-vscode
         tamasfe.even-better-toml
@@ -174,7 +175,7 @@
         gnumake
         nil
         nodejs
-        python3'
+        python314
         ruff
       ];
       
@@ -198,10 +199,8 @@
         gnome-tweaks
         helvum
         inkscape
-        karere
         libreoffice
         nautilus
-        neovim-qt
         nicotine-plus
         rhythmbox
         telegram-desktop
@@ -213,11 +212,6 @@
         en_GB-ise
         en_US
         uk_UA
-      ]);
-
-      python3' = python3.withPackages (ps: with ps; [
-        ps.django-stubs
-        ps.django-stubs-ext
       ]);
 
       texlive' = texliveBasic.withPackages (ps: with ps; [

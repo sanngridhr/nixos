@@ -101,37 +101,6 @@
     };
     
     pulseaudio.enable = false;
-
-    syncthing = {
-      enable = true;
-      configDir = "${globalVariables.xdgConfigHome}/syncthing";
-      dataDir = "${globalVariables.xdgDataHome}/syncthing";
-      openDefaultPorts = true;
-      relay.enable = true;
-      user = "orest";
-      settings = {
-        devices = {
-          GLaDOS.id    = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
-          Adventure.id = "PRJJANV-H57JF6J-7ILAOQW-BKIUWVP-K4SA2PF-ZCUMUNO-ZYCRKRP-BCL76A7";
-        };
-        folders = let
-          sharedConfig = {
-            devices = [ "Adventure" "GLaDOS" ];
-            versioning = {
-              type = "simple";
-              params = {
-                keep = 3;
-                cleanoutDays = 7;
-              };
-            };
-          };
-          folders = {
-            rpg.path = "/data/rpg";
-            docs.path = "/data/docs";
-          };
-        in builtins.mapAttrs (name: folder: folder // sharedConfig) folders;
-      };
-    };
     
     udev.packages = with pkgs; [
       gnome-settings-daemon
