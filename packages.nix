@@ -53,7 +53,7 @@
       shellAliases = {
         cat = "bat";
         cp = "cp -v";
-        ga = "git add .";
+        ga = "git add";
         gc = "git commit";
         gch = "git checkout";
         gp = "git push";
@@ -63,6 +63,7 @@
         mkdir = "mkdir -pv";
         mv = "mv -v";
         nrs = "nixos-rebuild switch --sudo --log-format multiline-with-logs";
+        q = "exit";
         rm = "trash-put -v";
         t503d = "nix-shell -p 'python3.withPackages (ps: [ ps.evdev ps.pyusb ps.pyyaml ])' \\
                  --run 'sudo python3 /data/build/10moons-t503-driver/driver.py'";
