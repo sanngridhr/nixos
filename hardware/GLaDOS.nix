@@ -10,34 +10,34 @@
   };
 
   fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/ROOT";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=@nixos" ];
-    };
-
-    "/home" = {
-      device = "/dev/disk/by-label/ROOT";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=@home" ];
-    };
-
     "/boot" = {
       device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+    "/" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+      options = [ "noatime" "compress=zstd" "subvol=@nixos" ];
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+      options = [ "noatime" "compress=zstd" "subvol=@home" ];
+    };
+
     "/ssdata" = {
       device = "/dev/disk/by-label/SSDATA";
       fsType = "btrfs";
-      options = [ "compress=zstd" ];
+      options = [ "noatime" "compress=zstd" ];
     };
 
     "/data" = {
       device = "/dev/disk/by-label/DATA";
       fsType = "btrfs";
-      options = [ "compress=zstd" ];
+      options = [ "noatime" "compress=zstd" "autodefrag" ];
     };
   };
 

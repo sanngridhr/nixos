@@ -8,28 +8,28 @@
   };
 
   fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
+
     "/" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=@nixos" ];
+      options = [ "noatime" "compress=zstd" "subvol=@nixos" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=@home" ];
+      options = [ "noatime" "compress=zstd" "subvol=@home" ];
     };
 
     "/data" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=@data" ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "noatime" "compress=zstd" "subvol=@data" ];
     };
   };
 
