@@ -2,9 +2,6 @@
 
 {
   boot = {
-    crashDump.enable = true;
-    kernelPackages = pkgs.linuxPackages_zen;
-    
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {

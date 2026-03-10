@@ -33,7 +33,7 @@
         inputs.home-manager.nixosModules.home-manager {
           home-manager = {
             backupFileExtension = "bak";
-            extraSpecialArgs = { inherit globalVariables; };
+            extraSpecialArgs = { inherit globalVariables inputs; };
             useGlobalPkgs = true;
             useUserPackages = true;
             users.orest = import ./home.nix;

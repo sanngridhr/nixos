@@ -1,4 +1,4 @@
-{ config, globalVariables, lib, osConfig, pkgs, ... }:
+{ config, globalVariables, lib, osConfig, pkgs, inputs, ... }:
 
 {
   home = {
@@ -34,11 +34,13 @@
   
   xdg.autostart = {
     enable = true;
-    entries = with builtins; [
+    entries = with builtins; let
+      unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
+    in [
       ./static/startup-sound/startup-sound.desktop
+      "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
     ] ++ ({
       firefox = "firefox";
-      telegram-desktop = "org.telegram.desktop";
       vesktop = "vesktop";
       steam = "steam";
     } |> mapAttrs (package: entry: "${pkgs.${package}}/share/applications/${entry}.desktop")
