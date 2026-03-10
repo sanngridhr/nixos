@@ -11,7 +11,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 14d";
     };
     
     settings = {
@@ -151,7 +151,7 @@
 
   environment = {
     systemPackages = with pkgs; let
-      unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
+      unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
 
       consolePackages = [
         eza
@@ -165,6 +165,7 @@
       ];
       
       desktopPackages = [
+        adoptopenjdk-icedtea-web
         materia-theme
         papirus-icon-theme
         posy-cursors
@@ -189,7 +190,6 @@
 
       programPackages = [
         baobab
-        celluloid
         dconf-editor
         eog
         file-roller
@@ -204,9 +204,9 @@
         nautilus
         nicotine-plus
         rhythmbox
-        telegram-desktop
         transmission_4-gtk
         vesktop
+        vlc
       ];
       
       hunspell' = hunspell.withDicts (ds: with ds; [
@@ -219,7 +219,11 @@
         capt-of
         fontspec
         latexmk
+        pgf
+        svg
+        transparent
         ulem
+        xcolor
         wrapfig
       ]);
 
