@@ -6,30 +6,37 @@
     homeDirectory = osConfig.users.users.orest.home;
     stateVersion = "24.11"; # Don't change!
 
-    file = let
-      programs = [
-        "bottom"
-        "cabal"
-        "gallery-dl"
-        "ghostty"
-        "git"
-        "starship"
-        "tealdeer"
-      ];
+    file = with builtins; let
       home = config.home.homeDirectory;
       xdgDir = home + "/.config/";
       repoDir = home + "/config/";
-      mkConfigLink = path: {
-        name = xdgDir + path;
-        value = { source = config.lib.file.mkOutOfStoreSymlink (repoDir + path); };
-      };
-    in builtins.listToAttrs (map mkConfigLink (programs ++ [
-      "VSCodium/User/settings.json"
-      "emacs/init.el"
-      "emacs/elpaca-setup.el"
-      "emacs/early-init.el"
+      mkConfigLinks = item: 
+        let
+          isStr = builtins.isString item;
+          src   = if isStr then item else item.src;
+          dsts  = if isStr then [ item ] else item.dsts;
+        in 
+          map (d: {
+            name = xdgDir + d;
+            value = { source = config.lib.file.mkOutOfStoreSymlink (repoDir + src); };
+          }) dsts;
+    in [
+      {
+        src = "Code/User/settings.json";
+        dsts = [ "Code/User/settings.json" "VSCodium/User/settings.json" ];
+      }
+      "bottom"
+      "cabal"
       "emacs/GNUEmacs.png"
-    ]));
+      "emacs/early-init.el"
+      "emacs/elpaca-setup.el"
+      "emacs/init.el"
+      "gallery-dl"
+      "ghostty"
+      "git"
+      "starship"
+      "tealdeer"
+    ] |> concatMap mkConfigLinks |> listToAttrs;
   };
   
   xdg.autostart = {

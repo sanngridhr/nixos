@@ -50,12 +50,15 @@
       interactiveShellInit = ''
         export HISTFILE=$XDG_STATE_HOME/bash/bashhist
         export HISTCONTROL=ignorespace:erasedups
+        fumbbl() {
+          nix-shell -p python3 openjdk8 adwaita-icon-theme --run "python3 /data/build/fumbbl/launch.py \"$1\""
+        }
       '';
       vteIntegration = true;
       shellAliases = {
         cat = "bat";
         cp = "cp -v";
-        ga = "git add";
+        ga = "git add .";
         gc = "git commit";
         gch = "git checkout";
         gp = "git push";
@@ -124,15 +127,15 @@
     };
     vscode = {
       enable = true;
-      package = pkgs.vscodium;
+      # package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
         charliermarsh.ruff
         dbaeumer.vscode-eslint
-        detachhead.basedpyright
+        # detachhead.basedpyright
         docker.docker
+        esbenp.prettier-vscode
         github.vscode-github-actions
         ms-python.python
-        esbenp.prettier-vscode
         tamasfe.even-better-toml
         vscodevim.vim
         (pkgs.vscode-utils.buildVscodeExtension {
