@@ -5,15 +5,24 @@
     picture-uri = "file://${globalVariables.background}";
     picture-uri-dark = "file://${globalVariables.background}";
   };
-  
+
   "org/gnome/desktop/input-sources" = {
     per-window = false;
     sources = with lib.hm.gvariant; [
-      (mkTuple [ "xkb" "us" ])
-      (mkTuple [ "xkb" "ua" ])
-      (mkTuple [ "ibus" "libpinyin" ])
+      (mkTuple [
+        "xkb"
+        "us"
+      ])
+      (mkTuple [
+        "xkb"
+        "ua"
+      ])
+      (mkTuple [
+        "ibus"
+        "libpinyin"
+      ])
     ];
-    
+
     xkb-options = [
       "compose:ralt"
       "shift:both_capslock"
@@ -50,7 +59,14 @@
   "org/gnome/desktop/wm/preferences" = {
     mouse-button-modifier = "<Alt>";
     num-workspaces = 6;
-    workspace-names = [ "α" "β" "γ" "δ" "ε" "ϛ" ];
+    workspace-names = [
+      "α"
+      "β"
+      "γ"
+      "δ"
+      "ε"
+      "ϛ"
+    ];
   };
 
   "org/gnome/evince/default" = {
@@ -63,26 +79,65 @@
 
   "org/gnome/shell" = {
     app-picker-layout = with lib.hm.gvariant; [
-      (mkTuple [ "cf_editors" 0 ])
-      (mkTuple [ "cf_graphics" 1 ])
-      (mkTuple [ "cf_internet" 2 ])
-      (mkTuple [ "cf_office" 3 ])
-      (mkTuple [ "cf_settings" 4 ])
-      (mkTuple [ "cf_sound_video" 5 ])
-      (mkTuple [ "htop.desktop" 6 ])
-      (mkTuple [ "mupdf.desktop" 7 ])
-      (mkTuple [ "nixos-manual.desktop" 8 ])
-      (mkTuple [ "org.gnome.FileRoller.desktop" 9 ])
-      (mkTuple [ "org.gnome.Tour.desktop" 10 ])
-      (mkTuple [ "org.gnome.baobab.desktop" 11 ])
+      (mkTuple [
+        "cf_editors"
+        0
+      ])
+      (mkTuple [
+        "cf_graphics"
+        1
+      ])
+      (mkTuple [
+        "cf_internet"
+        2
+      ])
+      (mkTuple [
+        "cf_office"
+        3
+      ])
+      (mkTuple [
+        "cf_settings"
+        4
+      ])
+      (mkTuple [
+        "cf_sound_video"
+        5
+      ])
+      (mkTuple [
+        "htop.desktop"
+        6
+      ])
+      (mkTuple [
+        "mupdf.desktop"
+        7
+      ])
+      (mkTuple [
+        "nixos-manual.desktop"
+        8
+      ])
+      (mkTuple [
+        "org.gnome.FileRoller.desktop"
+        9
+      ])
+      (mkTuple [
+        "org.gnome.Tour.desktop"
+        10
+      ])
+      (mkTuple [
+        "org.gnome.baobab.desktop"
+        11
+      ])
     ];
-    
+
     disable-user-extensions = false;
 
     enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"
+      "Vitals@CoreCoding.com"
       "appindicatorsupport@rgcjonas.gmail.com"
       "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+      "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+      "top-bar-organizer@julian.gse.jsts.xyz"
       "workspaces-by-open-apps@favo02.github.com"
     ];
 
@@ -131,6 +186,28 @@
     ];
   };
 
+  "extensions/top-bar-organizer" = {
+    center-box-order = [ "dateMenu" ];
+    left-box-order = [
+      "activities"
+      "vitalsMenu"
+    ];
+    right-box-order = [
+      "a11y"
+      "gpaste"
+      "keyboard"
+      "quickSettings"
+    ];
+  };
+
+  "org/gnome/shell/extensions/vitals" = {
+    hot-sensors = [
+      "_memory_usage_"
+      "_processor_usage_"
+      "__temperature_avg__"
+    ];
+  };
+
   "org/gnome/shell/extensions/workspaces-indicator-by-open-apps" = {
     apps-all-desaturate = false;
     apps-inactive-effect = "REDUCE OPACITY";
@@ -157,7 +234,7 @@
       "cf_sound_video"
     ];
   };
-  
+
   "org/gnome/desktop/app-folders/folders/cf_editors" = {
     apps = [
       "code.desktop"

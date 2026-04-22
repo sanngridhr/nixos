@@ -1,20 +1,21 @@
 {
   inputs = {
-    home-manager.url                    = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    steam-presence.url                    = "github:JustTemmie/steam-presence";
+    steam-presence.url = "github:JustTemmie/steam-presence";
     steam-presence.inputs.nixpkgs.follows = "nixpkgs";
 
-    python-validity.url   = "github:uunicorn/python-validity";
+    python-validity.url = "github:uunicorn/python-validity";
     python-validity.flake = false;
-    
-    nixos-hardware.url   = "github:NixOS/nixos-hardware";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url          = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
   };
-  
-  outputs = { self, nixpkgs, ... }@inputs:
+
+  outputs =
+    { self, nixpkgs, ... }@inputs:
     let
       nixos-hardware = inputs.nixos-hardware.nixosModules;
 
@@ -26,11 +27,12 @@
         xdgDataHome = "${_home}/.local/share";
         xdgStateHome = "${_home}/.local/state";
       };
-      
+
       commonModules = [
         ./configuration.nix
         ./packages.nix
-        inputs.home-manager.nixosModules.home-manager {
+        inputs.home-manager.nixosModules.home-manager
+        {
           home-manager = {
             backupFileExtension = "bak";
             extraSpecialArgs = { inherit globalVariables inputs; };
@@ -40,7 +42,8 @@
           };
         }
       ];
-    in {
+    in
+    {
       nixosConfigurations = {
         GLaDOS = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs globalVariables; };

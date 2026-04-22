@@ -1,10 +1,19 @@
-{ config, lib, modulesPath, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
-    initrd.availableKernelModules = [ "ahci" "usbhid" "sd_mod" ];
+    initrd.availableKernelModules = [
+      "ahci"
+      "usbhid"
+      "sd_mod"
+    ];
     initrd.kernelModules = [ "kvm-amd" ];
     kernelParams = [ "mem_sleep_default=deep" ];
   };
@@ -13,31 +22,49 @@
     "/boot" = {
       device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
 
     "/" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd" "subvol=@nixos" ];
+      options = [
+        "noatime"
+        "compress=zstd"
+        "subvol=@nixos"
+      ];
     };
 
     "/home" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd" "subvol=@home" ];
+      options = [
+        "noatime"
+        "compress=zstd"
+        "subvol=@home"
+      ];
     };
 
     "/ssdata" = {
       device = "/dev/disk/by-label/SSDATA";
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd" ];
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
     };
 
     "/data" = {
       device = "/dev/disk/by-label/DATA";
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd" "autodefrag" ];
+      options = [
+        "noatime"
+        "compress=zstd"
+        "autodefrag"
+      ];
     };
   };
 
