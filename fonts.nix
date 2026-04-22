@@ -13,8 +13,13 @@
         "Source Han Serif"
         "Liberation Serif"
       ];
-      monospace = [ "Iosevka Nerd Font" ];
-      emoji = [ "Twitter Color Emoji" ];
+      monospace = [
+        "FantasqueSansM Nerd Font"
+        "DeJavu Sans Mono"
+      ];
+      emoji = [
+        "Twitter Color Emoji"
+      ];
     };
   };
 
@@ -24,7 +29,7 @@
     in
     with pkgs;
     [
-      nerd-fonts.iosevka
+      nerd-fonts.fantasque-sans-mono
       noto-fonts
       source-sans
       source-han-sans

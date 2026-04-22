@@ -51,7 +51,6 @@
         "gallery-dl"
         "ghostty"
         "git"
-        "starship"
         "tealdeer"
       ]
       |> concatMap mkConfigLinks

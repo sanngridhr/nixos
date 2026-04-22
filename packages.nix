@@ -49,7 +49,6 @@
         "geary"
         "gpaste"
         "htop"
-        "starship"
         "xwayland"
         "zoom-us"
       ];
@@ -65,7 +64,8 @@
           export HISTSIZE=
           export HISTFILESIZE=
           fumbbl() {
-            nix-shell -p python3 openjdk8 adwaita-icon-theme --run "python3 /data/build/fumbbl/launch.py \"$1\""
+            nix-shell -p 'python3 openjdk8 adwaita-icon-theme adoptopenjdk-icedtea-web' \\
+            --run "python3 /data/build/fumbbl/launch.py \"$1\""
           }
         '';
         vteIntegration = true;
@@ -123,6 +123,31 @@
           init-module=${globalVariables.xdgConfigHome}/npm/config/npm-init.js
           tmp=/tmp/npm
         '';
+      };
+      starship = {
+        enable = true;
+        presets = [ "nerd-font-symbols" "bracketed-segments" ];
+        settings = {
+          character = {
+            success_symbol = "[>](bold green)";
+            error_symbol = "[>](bold red)";
+          };
+          cmd_duration = {
+            format = "\\[[󱎫 $duration]($style)\\]";
+          };
+          custom.make = {
+            symbol = " ";
+            detect_files = [ "GNUmakefile" "makefile" "Makefile" ];
+            style = "bold yellow";
+            format = "\\[[via $symbol($output )]($style)\\]";
+          };
+          git_status = {
+            ahead = "->";
+            behind = "<-";
+            diverged = "<>";
+            deleted = "×";
+          };
+        };
       };
       steam = {
         enable = true;
@@ -186,7 +211,6 @@
         ];
 
         desktopPackages = [
-          adoptopenjdk-icedtea-web
           materia-theme
           papirus-icon-theme
           posy-cursors
