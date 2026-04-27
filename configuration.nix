@@ -60,11 +60,11 @@
   i18n = {
     defaultLocale = "uk_UA.UTF-8";
 
-    inputMethod = {
-      enable = true;
-      type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
-    };
+    # inputMethod = {
+    #   enable = true;
+    #   type = "ibus";
+    #   ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
+    # };
   };
 
   networking = {
@@ -79,20 +79,18 @@
 
   qt = {
     enable = true;
-    platformTheme = "gnome";
+    platformTheme = "gtk2";
     style = "adwaita-dark";
   };
 
   services = {
-    displayManager.gdm.enable = true;
-    gnome.core-apps.enable = false;
     pulseaudio.enable = false;
-
-    desktopManager.gnome = {
-      enable = true;
-      sessionPath = [ pkgs.gpaste ];
+    
+    displayManager = {
+      defaultSession = "xfce";
+      ly.enable = true;
     };
-
+    
     openssh = {
       enable = true;
       openFirewall = true;
@@ -109,21 +107,10 @@
       pulse.enable = true;
     };
 
-    syncthing = {
+    xserver.desktopManager.xfce = {
       enable = true;
-      configDir = "${globalVariables.xdgConfigHome}/syncthing";
-      dataDir = "${globalVariables.xdgDataHome}/syncthing";
-      openDefaultPorts = true;
-      relay.enable = true;
-      user = "orest";
-      settings.devices = {
-        GLaDOS.id = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
-        Adventure.id = "PRJJANV-H57JF6J-7ILAOQW-BKIUWVP-K4SA2PF-ZCUMUNO-ZYCRKRP-BCL76A7";
-      };
     };
-
-    udev.packages = with pkgs; [ gnome-settings-daemon ];
-
+    
     zerotierone = {
       enable = true;
       joinNetworks = [ "52b337794fe2dad7" ];

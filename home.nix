@@ -39,6 +39,7 @@
           src = "Code/User/settings.json";
           dsts = [
             "Code/User/settings.json"
+            "Cursor/User/settings.json"
             "VSCodium/User/settings.json"
           ];
         }
@@ -79,5 +80,5 @@
       );
   };
 
-  dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
+  # dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
 }
