@@ -128,12 +128,11 @@
         enable = true;
         presets = [ "nerd-font-symbols" "bracketed-segments" ];
         settings = {
+          cmd_duration.format = "\\[[󱎫 $duration]($style)\\]";
+          package.symbol = "󰏓 ";
           character = {
             success_symbol = "[>](bold green)";
             error_symbol = "[>](bold red)";
-          };
-          cmd_duration = {
-            format = "\\[[󱎫 $duration]($style)\\]";
           };
           custom.make = {
             symbol = " ";
@@ -144,8 +143,13 @@
           git_status = {
             ahead = "->";
             behind = "<-";
-            diverged = "<>";
+            diverged = "←→";
             deleted = "×";
+            staged = "*";
+          };
+          sudo = {
+            symbol = " ";
+            disabled = false;
           };
         };
       };

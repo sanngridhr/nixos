@@ -78,56 +78,20 @@
   };
 
   "org/gnome/shell" = {
-    app-picker-layout = with lib.hm.gvariant; [
-      (mkTuple [
-        "cf_editors"
-        0
-      ])
-      (mkTuple [
-        "cf_graphics"
-        1
-      ])
-      (mkTuple [
-        "cf_internet"
-        2
-      ])
-      (mkTuple [
-        "cf_office"
-        3
-      ])
-      (mkTuple [
-        "cf_settings"
-        4
-      ])
-      (mkTuple [
-        "cf_sound_video"
-        5
-      ])
-      (mkTuple [
-        "htop.desktop"
-        6
-      ])
-      (mkTuple [
-        "mupdf.desktop"
-        7
-      ])
-      (mkTuple [
-        "nixos-manual.desktop"
-        8
-      ])
-      (mkTuple [
-        "org.gnome.FileRoller.desktop"
-        9
-      ])
-      (mkTuple [
-        "org.gnome.Tour.desktop"
-        10
-      ])
-      (mkTuple [
-        "org.gnome.baobab.desktop"
-        11
-      ])
-    ];
+    app-picker-layout = [
+      "cf_editors"
+      "cf_graphics"
+      "cf_internet"
+      "cf_office"
+      "cf_settings"
+      "cf_sound_video"
+      "htop.desktop"
+      "mupdf.desktop"
+      "nixos-manual.desktop"
+      "org.gnome.FileRoller.desktop"
+      "org.gnome.Tour.desktop"
+      "org.gnome.baobab.desktop"
+    ] |> lib.imap0 (index: name: (lib.hm.gvariant.mkTuple [name index]));
 
     disable-user-extensions = false;
 
@@ -160,6 +124,7 @@
       "org.gnome.Rhythmbox3.desktop"
       "transmission-gtk.desktop"
       #
+      "Alacritty.desktop"
       "com.mitchellh.ghostty.desktop"
       "org.gnome.Calculator.desktop"
       "org.gnome.Nautilus.desktop"
