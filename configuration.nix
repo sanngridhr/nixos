@@ -25,29 +25,42 @@
     };
   };
 
-  environment.sessionVariables = rec {
-    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
-    MANPAGER = "batman";
-    NIXOS_OZONE_WL = 1;
+  console = {
+    font = "${pkgs.cozette}/share/consolefonts/cozette12x26.psfu";
+  };
 
-    XDG_CACHE_HOME = globalVariables.xdgCacheHome;
-    NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
+  environment = {
+    sessionVariables = rec {
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      MANPAGER = "batman";
+      NIXOS_OZONE_WL = 1;
 
-    XDG_CONFIG_HOME = globalVariables.xdgConfigHome;
-    "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
-    DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
-    JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
-    PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/rc.py";
-    NPM_CONFIG_INIT_MODULE = "${XDG_CONFIG_HOME}/npm/config/npm-init.js";
+      XDG_CACHE_HOME = globalVariables.xdgCacheHome;
+      NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
 
-    XDG_DATA_HOME = globalVariables.xdgDataHome;
-    DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
-    GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
-    SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
+      XDG_CONFIG_HOME = globalVariables.xdgConfigHome;
+      "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
+      DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
+      JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
+      PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/rc.py";
+      NPM_CONFIG_INIT_MODULE = "${XDG_CONFIG_HOME}/npm/config/npm-init.js";
 
-    XDG_STATE_HOME = globalVariables.xdgStateHome;
+      XDG_DATA_HOME = globalVariables.xdgDataHome;
+      DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
+      GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
+      SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
 
-    NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+      XDG_STATE_HOME = globalVariables.xdgStateHome;
+
+      NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+    };
+    xfce.excludePackages = with pkgs.xfce; [
+      mousepad
+      xfce4-terminal
+      xfdesktop
+      xfwm4
+      xfwm4-themes
+    ];
   };
 
   fonts = import ./fonts.nix { inherit pkgs inputs; };
@@ -57,15 +70,7 @@
     keyboard.qmk.enable = true;
   };
 
-  i18n = {
-    defaultLocale = "uk_UA.UTF-8";
-
-    # inputMethod = {
-    #   enable = true;
-    #   type = "ibus";
-    #   ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
-    # };
-  };
+  i18n.defaultLocale = "uk_UA.UTF-8";
 
   networking = {
     firewall = {
@@ -88,7 +93,7 @@
     
     displayManager = {
       defaultSession = "xfce";
-      ly.enable = true;
+      gdm.enable = true;
     };
     
     openssh = {
@@ -107,8 +112,19 @@
       pulse.enable = true;
     };
 
-    xserver.desktopManager.xfce = {
+    xserver = {
       enable = true;
+      excludePackages = with pkgs; [ xterm ];
+      desktopManager.xfce.enable = true;
+
+      windowManager.i3 = {
+        enable = true;
+      };
+      
+      xkb = {
+        layout = "us,ua";
+        options = "caps:hyper,compose:ralt,shift:both_capslock";
+      };
     };
     
     zerotierone = {

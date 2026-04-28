@@ -50,9 +50,10 @@
         "emacs/elpaca-setup.el"
         "emacs/init.el"
         "gallery-dl"
-        "ghostty"
         "git"
+        "i3"
         "tealdeer"
+        "wezterm"
       ]
       |> concatMap mkConfigLinks
       |> listToAttrs;
@@ -70,15 +71,10 @@
         "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ]
       ++ (
-        {
-          firefox = "firefox";
-          vesktop = "vesktop";
-          steam = "steam";
-        }
-        |> mapAttrs (package: entry: "${pkgs.${package}}/share/applications/${entry}.desktop")
-        |> attrValues
+        [ "firefox" "vesktop" "steam" ]
+        |> map (program: "${pkgs.${program}}/share/applications/${program}.desktop")
       );
   };
 
-  # dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
+  xfconf.settings = import ./xfconf.nix { inherit globalVariables; };
 }
