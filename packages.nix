@@ -231,15 +231,6 @@
           ruff
         ];
 
-        gnomePackages = with gnomeExtensions; [
-          appindicator
-          auto-move-windows
-          native-window-placement
-          top-bar-organizer
-          vitals
-          workspaces-indicator-by-open-apps
-        ];
-
         programPackages = [
           baobab
           celluloid
@@ -250,7 +241,6 @@
           unstable.ghostty
           gimp
           gnome-calculator
-          gnome-tweaks
           helvum
           inkscape
           libreoffice

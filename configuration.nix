@@ -85,13 +85,7 @@
 
   services = {
     displayManager.gdm.enable = true;
-    gnome.core-apps.enable = false;
     pulseaudio.enable = false;
-
-    desktopManager.gnome = {
-      enable = true;
-      sessionPath = [ pkgs.gpaste ];
-    };
 
     openssh = {
       enable = true;
@@ -109,21 +103,15 @@
       pulse.enable = true;
     };
 
-    syncthing = {
+    xserver = {
       enable = true;
-      configDir = "${globalVariables.xdgConfigHome}/syncthing";
-      dataDir = "${globalVariables.xdgDataHome}/syncthing";
-      openDefaultPorts = true;
-      relay.enable = true;
-      user = "orest";
-      settings.devices = {
-        GLaDOS.id = "AC73TDA-HVS5UKV-PYJ4WBM-OYUV2IL-XTWOWPR-QQCEUYR-RCSI77I-2MUODQV";
-        Adventure.id = "PRJJANV-H57JF6J-7ILAOQW-BKIUWVP-K4SA2PF-ZCUMUNO-ZYCRKRP-BCL76A7";
+      excludePackages = with pkgs; [ xterm ];
+      desktopManager.budgie = {
+        enable = true;
+        sessionPath = with pkgs; [ gpaste ];
       };
     };
-
-    udev.packages = with pkgs; [ gnome-settings-daemon ];
-
+    
     zerotierone = {
       enable = true;
       joinNetworks = [ "52b337794fe2dad7" ];
