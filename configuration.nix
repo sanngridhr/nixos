@@ -138,7 +138,7 @@
     Defaults env_keep += \"EDITOR VIMINIT XDG_CONFIG_HOME XDG_STATE_HOME\"";
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/SWAP"; } ];
+  swapDevices = [ { label = "SWAP"; } ];
 
   time.timeZone = "Europe/Kyiv";
 
@@ -168,12 +168,6 @@
       enable = true;
       xdgOpenUsePortal = true;
     };
-  };
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 50;
   };
 
   system.stateVersion = "24.11"; # Don't change!

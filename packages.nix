@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   inputs,
   globalVariables,
   ...
@@ -222,6 +221,7 @@
         ];
 
         desktopPackages = [
+          budgie-systemmonitor-applet
           materia-theme
           papirus-icon-theme
           posy-cursors
