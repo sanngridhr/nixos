@@ -1,7 +1,6 @@
 {
   config,
   globalVariables,
-  lib,
   osConfig,
   pkgs,
   inputs,
@@ -61,7 +60,6 @@
   xdg.autostart = {
     enable = true;
     entries =
-      with builtins;
       let
         unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
         mkEntry = program: "${pkgs.${program}}/share/applications/${program}.desktop";
@@ -77,29 +75,5 @@
       ]);
   };
 
-  dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
-  services.devilspie2 = {
-    enable = true;
-    config = ''
-local rules = {
-  { "Navigator", "firefox" },
-  { "Telegram.*" },
-  { "vesktop" },
-  { "steam.*" },
-  { "[Ee]macs", "[Cc]ode", "[Cc]ursor" },
-  { "[Oo]rg.gnome.Rhythmbox3", "[Tt]ransmission-gtk" },
-}
-
-local class = get_window_class() or ""
-
-for workspace, patterns in ipairs(rules) do
-    for _, pattern in ipairs(patterns) do
-        if string.match(class, pattern) then
-            set_workspace(workspace)
-            return
-        end
-    end
-end
-    '';
-  };
+  dconf.settings = import ./dconf.nix { inherit globalVariables; };
 }

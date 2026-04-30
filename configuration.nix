@@ -105,7 +105,7 @@
     pipewire = {
       enable = true;
       pulse.enable = true;
-      
+
       alsa = {
         enable = true;
         support32Bit = true;
@@ -119,7 +119,7 @@
         layout = "us,ua";
         options = "grp:ctrl_shift_toggle,compose:rctrl";
       };
-      
+
       desktopManager.budgie = {
         enable = true;
         sessionPath = with pkgs; [ gpaste ];
@@ -138,7 +138,12 @@
     Defaults env_keep += \"EDITOR VIMINIT XDG_CONFIG_HOME XDG_STATE_HOME\"";
   };
 
-  swapDevices = [ { label = "SWAP"; } ];
+  swapDevices = [
+    {
+      label = "SWAP";
+      options = [ "discard" ];
+    }
+  ];
 
   time.timeZone = "Europe/Kyiv";
 
@@ -168,6 +173,12 @@
       enable = true;
       xdgOpenUsePortal = true;
     };
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
   };
 
   system.stateVersion = "24.11"; # Don't change!

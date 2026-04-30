@@ -1,4 +1,4 @@
-{ lib, globalVariables, ... }:
+{ globalVariables, ... }:
 
 {
   "org/gnome/desktop/background" = {
