@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   globalVariables,
@@ -25,29 +24,46 @@
     };
   };
 
-  environment.sessionVariables = rec {
-    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
-    MANPAGER = "batman";
-    NIXOS_OZONE_WL = 1;
+  environment = {
+    budgie.excludePackages =
+      with pkgs;
+      with mate;
+      [
+        atril
+        engrampa
+        eom
+        gnome-terminal
+        mate-calc
+        nemo
+        pluma
+        qogir-icon-theme
+        qogir-theme
+        vlc
+      ];
+    sessionVariables = rec {
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      MANPAGER = "batman";
+      NIXOS_OZONE_WL = 1;
 
-    XDG_CACHE_HOME = globalVariables.xdgCacheHome;
-    NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
+      XDG_CACHE_HOME = globalVariables.xdgCacheHome;
+      NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
 
-    XDG_CONFIG_HOME = globalVariables.xdgConfigHome;
-    "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
-    DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
-    JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
-    PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/rc.py";
-    NPM_CONFIG_INIT_MODULE = "${XDG_CONFIG_HOME}/npm/config/npm-init.js";
+      XDG_CONFIG_HOME = globalVariables.xdgConfigHome;
+      "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
+      DOCKER_CONFIG = "${XDG_CONFIG_HOME}/docker";
+      JAVA_TOOL_OPTIONS = "-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java";
+      PYTHONSTARTUP = "${XDG_CONFIG_HOME}/python/rc.py";
+      NPM_CONFIG_INIT_MODULE = "${XDG_CONFIG_HOME}/npm/config/npm-init.js";
 
-    XDG_DATA_HOME = globalVariables.xdgDataHome;
-    DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
-    GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
-    SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
+      XDG_DATA_HOME = globalVariables.xdgDataHome;
+      DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
+      GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
+      SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
 
-    XDG_STATE_HOME = globalVariables.xdgStateHome;
+      XDG_STATE_HOME = globalVariables.xdgStateHome;
 
-    NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+      NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+    };
   };
 
   fonts = import ./fonts.nix { inherit pkgs inputs; };
@@ -57,15 +73,7 @@
     keyboard.qmk.enable = true;
   };
 
-  i18n = {
-    defaultLocale = "uk_UA.UTF-8";
-
-    inputMethod = {
-      enable = true;
-      type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ libpinyin ];
-    };
-  };
+  i18n.defaultLocale = "uk_UA.UTF-8";
 
   networking = {
     firewall = {
@@ -96,22 +104,28 @@
 
     pipewire = {
       enable = true;
+      pulse.enable = true;
+      
       alsa = {
         enable = true;
         support32Bit = true;
       };
-      pulse.enable = true;
     };
 
     xserver = {
       enable = true;
       excludePackages = with pkgs; [ xterm ];
+      xkb = {
+        layout = "us,ua";
+        options = "grp:ctrl_shift_toggle,compose:rctrl";
+      };
+      
       desktopManager.budgie = {
         enable = true;
         sessionPath = with pkgs; [ gpaste ];
       };
     };
-    
+
     zerotierone = {
       enable = true;
       joinNetworks = [ "52b337794fe2dad7" ];

@@ -126,7 +126,10 @@
       };
       starship = {
         enable = true;
-        presets = [ "nerd-font-symbols" "bracketed-segments" ];
+        presets = [
+          "nerd-font-symbols"
+          "bracketed-segments"
+        ];
         settings = {
           cmd_duration.format = "\\[[󱎫 $duration]($style)\\]";
           package.symbol = "󰏓 ";
@@ -136,7 +139,11 @@
           };
           custom.make = {
             symbol = " ";
-            detect_files = [ "GNUmakefile" "makefile" "Makefile" ];
+            detect_files = [
+              "GNUmakefile"
+              "makefile"
+              "Makefile"
+            ];
             style = "bold yellow";
             format = "\\[[via $symbol($output )]($style)\\]";
           };
@@ -223,7 +230,7 @@
 
         devPackages = [
           unstable.code-cursor
-          emacs-pgtk
+          emacs-gtk
           gnumake
           nil
           nodejs
@@ -234,7 +241,6 @@
         programPackages = [
           baobab
           celluloid
-          dconf-editor
           eog
           file-roller
           foliate
@@ -278,7 +284,6 @@
         consolePackages
         desktopPackages
         devPackages
-        gnomePackages
         programPackages
       ]
       ++ [

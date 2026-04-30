@@ -39,6 +39,7 @@
           src = "Code/User/settings.json";
           dsts = [
             "Code/User/settings.json"
+            "Cursor/User/settings.json"
             "VSCodium/User/settings.json"
           ];
         }
@@ -63,21 +64,42 @@
       with builtins;
       let
         unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
+        mkEntry = program: "${pkgs.${program}}/share/applications/${program}.desktop";
       in
       [
         ./static/startup-sound/startup-sound.desktop
         "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ]
-      ++ (
-        {
-          firefox = "firefox";
-          vesktop = "vesktop";
-          steam = "steam";
-        }
-        |> mapAttrs (package: entry: "${pkgs.${package}}/share/applications/${entry}.desktop")
-        |> attrValues
-      );
+      ++ (map mkEntry [
+        "firefox"
+        "vesktop"
+        "steam"
+      ]);
   };
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
+  services.devilspie2 = {
+    enable = true;
+    config = ''
+local rules = {
+  { "Navigator", "firefox" },
+  { "Telegram.*" },
+  { "vesktop" },
+  { "steam.*" },
+  { "[Ee]macs", "[Cc]ode", "[Cc]ursor" },
+  { "[Oo]rg.gnome.Rhythmbox3", "[Tt]ransmission-gtk" },
+}
+
+local class = get_window_class() or ""
+
+for workspace, patterns in ipairs(rules) do
+    for _, pattern in ipairs(patterns) do
+        if string.match(class, pattern) then
+            set_workspace(workspace)
+            return
+        end
+    end
+end
+    '';
+  };
 }
