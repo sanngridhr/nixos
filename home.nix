@@ -63,20 +63,13 @@
       with builtins;
       let
         unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
+	mkEntry = entry: "${pkgs.${entry}}/share/applications/${entry}.desktop";
       in
       [
         ./static/startup-sound/startup-sound.desktop
         "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ]
-      ++ (
-        {
-          firefox = "firefox";
-          vesktop = "vesktop";
-          steam = "steam";
-        }
-        |> mapAttrs (package: entry: "${pkgs.${package}}/share/applications/${entry}.desktop")
-        |> attrValues
-      );
+      ++ (map mkEntry ["firefox" "vesktop" "steam"]);
   };
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
