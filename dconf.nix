@@ -1,4 +1,4 @@
-{ globalVariables, ... }:
+{ lib, globalVariables, ... }:
 
 {
   "org/gnome/desktop/background" = {
@@ -6,6 +6,11 @@
     picture-uri-dark = "file://${globalVariables.background}";
   };
 
+  "org/gnome/desktop/input-sources" = {
+    sources = [["xkb" "us"] ["xkb" "ua"]] |> map lib.hm.gvariant.mkTuple;
+    xkb-options = [ "lv3:ralt" "compose:ralt" ];
+  };
+  
   "org/gnome/desktop/interface" = {
     accent-color = "slate";
     color-scheme = "prefer-dark";
@@ -23,6 +28,7 @@
     move-to-workspace-4 = [ "<Alt><Shift>4" ];
     move-to-workspace-5 = [ "<Alt><Shift>5" ];
     move-to-workspace-6 = [ "<Alt><Shift>6" ];
+    switch-input-source = [ "<Alt>Shift_L" ];
     switch-to-workspace-1 = [ "<Alt>1" ];
     switch-to-workspace-2 = [ "<Alt>2" ];
     switch-to-workspace-3 = [ "<Alt>3" ];

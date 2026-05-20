@@ -215,7 +215,6 @@
           imagemagick
           jq
           mupdf
-          sccache
           tealdeer
           trash-cli
         ];
@@ -225,7 +224,6 @@
           materia-theme
           papirus-icon-theme
           posy-cursors
-          wl-clipboard
         ];
 
         devPackages = [

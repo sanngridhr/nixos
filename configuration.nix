@@ -43,7 +43,6 @@
     sessionVariables = rec {
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
       MANPAGER = "batman";
-      NIXOS_OZONE_WL = 1;
 
       XDG_CACHE_HOME = globalVariables.xdgCacheHome;
       NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
@@ -115,10 +114,6 @@
     xserver = {
       enable = true;
       excludePackages = with pkgs; [ xterm ];
-      xkb = {
-        layout = "us,ua";
-        options = "grp:ctrl_shift_toggle,compose:rctrl";
-      };
 
       desktopManager.budgie = {
         enable = true;
@@ -172,6 +167,7 @@
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-gnome ];
     };
   };
 

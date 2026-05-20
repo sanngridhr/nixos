@@ -4,6 +4,7 @@
   osConfig,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -75,5 +76,5 @@
       ]);
   };
 
-  dconf.settings = import ./dconf.nix { inherit globalVariables; };
+  dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
 }
