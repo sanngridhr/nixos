@@ -204,6 +204,7 @@
     apps = [
       "code.desktop"
       "codium.desktop"
+      "cursor.desktop"
       "emacsclient.desktop"
       "vim.desktop"
     ];
@@ -239,7 +240,9 @@
   "org/gnome/desktop/app-folders/folders/cf_office" = {
     apps = [
       "abiword.desktop"
+      "com.github.johnfactotum.Foliate.desktop"
       "cups.desktop"
+      "mupdf.desktop"
       "org.gnome.Evince.desktop"
       "base.desktop"
       "calc.desktop"

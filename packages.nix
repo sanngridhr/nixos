@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   inputs,
   globalVariables,
   ...
@@ -96,9 +95,7 @@
         settings = {
           italic-text = "always";
           style = "full";
-          map-syntax = [
-            "\.?bashhist:\"Bourne Again Shell (bash)\""
-          ];
+          map-syntax = [ "*bashhist:bash" ];
         };
       };
       git = {
@@ -205,11 +202,9 @@
 
         consolePackages = [
           eza
-          fd
           imagemagick
           jq
           mupdf
-          sccache
           tealdeer
           trash-cli
         ];

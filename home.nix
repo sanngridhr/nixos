@@ -60,16 +60,18 @@
   xdg.autostart = {
     enable = true;
     entries =
-      with builtins;
       let
         unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
-	mkEntry = entry: "${pkgs.${entry}}/share/applications/${entry}.desktop";
+        mkEntry = entry: "${pkgs.${entry}}/share/applications/${entry}.desktop";
       in
       [
         ./static/startup-sound/startup-sound.desktop
         "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
-      ]
-      ++ (map mkEntry ["firefox" "vesktop" "steam"]);
+      ] ++ (map mkEntry [
+        "firefox"
+        "vesktop"
+        "steam"
+      ]);
   };
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
