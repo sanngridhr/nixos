@@ -33,7 +33,7 @@
   "org/gnome/desktop/interface" = {
     accent-color = "slate";
     color-scheme = "prefer-dark";
-    cursor-size = 12;
+    cursor-size = 32;
     cursor-theme = "Posy_Cursor";
     gtk-theme = "Materia-dark";
     font-name = "sans-serif 11";
@@ -100,7 +100,6 @@
       "Vitals@CoreCoding.com"
       "appindicatorsupport@rgcjonas.gmail.com"
       "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-      "native-window-placement@gnome-shell-extensions.gcampax.github.com"
       "top-bar-organizer@julian.gse.jsts.xyz"
       "workspaces-by-open-apps@favo02.github.com"
     ];

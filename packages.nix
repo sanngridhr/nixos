@@ -74,8 +74,8 @@
           ga = "git add .";
           gc = "git commit";
           gch = "git checkout";
-          gp = "git push";
-          gpl = "git pull";
+          gp = "git push -v";
+          gpl = "git pull -v";
           grep = "grep -ni --color";
           ls = "eza -F -Ghl --git --icons";
           mkdir = "mkdir -pv";
@@ -229,7 +229,6 @@
         gnomePackages = with gnomeExtensions; [
           appindicator
           auto-move-windows
-          native-window-placement
           top-bar-organizer
           vitals
           workspaces-indicator-by-open-apps
@@ -246,7 +245,6 @@
           gimp
           gnome-calculator
           gnome-tweaks
-          helvum
           inkscape
           libreoffice
           nautilus
@@ -260,7 +258,6 @@
         hunspell' = hunspell.withDicts (
           ds: with ds; [
             en_GB-ise
-            en_US
             uk_UA
           ]
         );

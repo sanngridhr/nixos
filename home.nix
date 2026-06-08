@@ -33,6 +33,7 @@
               source = config.lib.file.mkOutOfStoreSymlink (repoDir + src);
             };
           }) dsts;
+        catAttrsets = (attr1: attr2: attr1 // attr2);
       in
       [
         {
@@ -52,9 +53,10 @@
         "ghostty"
         "git"
         "tealdeer"
-      ]
-      |> concatMap mkConfigLinks
-      |> listToAttrs;
+      ] |> concatMap mkConfigLinks |> listToAttrs |> catAttrsets {
+        "${home}/.local/share/icons/Posy_Cursor".source
+          = "${pkgs.posy-cursors}/share/icons/Posy_Cursor";
+      };
   };
 
   xdg.autostart = {

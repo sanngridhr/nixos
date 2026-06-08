@@ -1,17 +1,14 @@
 {
   inputs = {
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     steam-presence.url = "github:JustTemmie/steam-presence";
     steam-presence.inputs.nixpkgs.follows = "nixpkgs";
-
-    python-validity.url = "github:uunicorn/python-validity";
-    python-validity.flake = false;
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
   };
 
   outputs =

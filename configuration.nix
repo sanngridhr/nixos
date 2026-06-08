@@ -25,11 +25,12 @@
   };
 
   environment = {
-    memoryAllocator.provider = "jemalloc";
     sessionVariables = rec {
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
       MANPAGER = "batman";
       NIXOS_OZONE_WL = 1;
+      XCURSOR_THEME = "Posy_Cursor";
+      XCURSOR_SIZE = "32";
 
       XDG_CACHE_HOME = globalVariables.xdgCacheHome;
       NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
@@ -59,8 +60,11 @@
     keyboard.qmk.enable = true;
   };
 
-  i18n = {
+  i18n = let
+    mkUtfLocale = (locale: locale + ".UTF-8/UTF-8");
+   in{
     defaultLocale = "uk_UA.UTF-8";
+    extraLocales = map mkUtfLocale [ "en_GB" "de_DE" ];
 
     inputMethod = {
       enable = true;
@@ -70,12 +74,7 @@
   };
 
   networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
-    };
-
+    firewall.enable = true;
     networkmanager.enable = true;
   };
 
@@ -86,13 +85,17 @@
   };
 
   services = {
-    displayManager.gdm.enable = true;
     gnome.core-apps.enable = false;
     pulseaudio.enable = false;
 
     desktopManager.gnome = {
       enable = true;
       sessionPath = [ pkgs.gpaste ];
+    };
+
+    displayManager = {
+      autoLogin.user = "orest";
+      gdm.enable = true;
     };
 
     openssh = {
