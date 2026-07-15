@@ -27,36 +27,40 @@
             src = if isStr then item else item.src;
             dsts = if isStr then [ item ] else item.dsts;
           in
-          map (d: {
-            name = xdgDir + d;
-            value = {
-              source = config.lib.file.mkOutOfStoreSymlink (repoDir + src);
-            };
-          }) dsts;
+            map (d: {
+              name = xdgDir + d;
+              value = {
+                source = config.lib.file.mkOutOfStoreSymlink (repoDir + src);
+              };
+            }) dsts;
         catAttrsets = (attr1: attr2: attr1 // attr2);
       in
-      [
-        {
-          src = "Code/User/settings.json";
-          dsts = [
-            "Code/User/settings.json"
-            "VSCodium/User/settings.json"
-          ];
-        }
-        "bottom"
-        "cabal"
-        "emacs/GNUEmacs.png"
-        "emacs/early-init.el"
-        "emacs/elpaca-setup.el"
-        "emacs/init.el"
-        "gallery-dl"
-        "ghostty"
-        "git"
-        "tealdeer"
-      ] |> concatMap mkConfigLinks |> listToAttrs |> catAttrsets {
-        "${home}/.local/share/icons/Posy_Cursor".source
+        [
+          {
+            src = "Code/User/settings.json";
+            dsts = [
+              "Code/User/settings.json"
+              "VSCodium/User/settings.json"
+            ];
+          }
+          "bottom"
+          "cabal"
+          "emacs/GNUEmacs.png"
+          "emacs/early-init.el"
+          "emacs/elpaca-setup.el"
+          "emacs/init.el"
+          "gallery-dl"
+          "ghostty"
+          "git"
+          "tealdeer"
+        ] |> concatMap mkConfigLinks |> listToAttrs |> catAttrsets {
+          "${home}/.local/share/icons/Posy_Cursor".source
           = "${pkgs.posy-cursors}/share/icons/Posy_Cursor";
-      };
+        };
+
+    sessionVariables = {
+      
+    };
   };
 
   xdg.autostart = {
