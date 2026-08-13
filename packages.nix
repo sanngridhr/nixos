@@ -185,7 +185,7 @@
             (pkgs.vscode-utils.buildVscodeExtension {
               pname = "flexoki-theme";
 
-              src = ./static/flexoki-vscode;
+              src = import ./static/flexoki-vscode { inherit pkgs; };
               sourceRoot = ".";
               unpackPhase = vscodeUnpack;
 
