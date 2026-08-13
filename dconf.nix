@@ -9,18 +9,9 @@
   "org/gnome/desktop/input-sources" = {
     per-window = false;
     sources = with lib.hm.gvariant; [
-      (mkTuple [
-        "xkb"
-        "us"
-      ])
-      (mkTuple [
-        "xkb"
-        "ua"
-      ])
-      (mkTuple [
-        "ibus"
-        "libpinyin"
-      ])
+      (mkTuple ["xkb" "us"])
+      (mkTuple ["xkb" "ua"])
+      (mkTuple ["ibus" "libpinyin"])
     ];
 
     xkb-options = [
@@ -32,12 +23,12 @@
 
   "org/gnome/desktop/interface" = {
     accent-color = "slate";
-    color-scheme = "prefer-dark";
+    color-scheme = "default";
     cursor-size = 32;
     cursor-theme = "Posy_Cursor";
-    gtk-theme = "Materia-dark";
+    gtk-theme = "Materia-light";
     font-name = "sans-serif 11";
-    icon-theme = "Papirus-Dark";
+    icon-theme = "Papirus-Light";
   };
 
   "org/gnome/desktop/wm/keybindings" = {
@@ -59,14 +50,7 @@
   "org/gnome/desktop/wm/preferences" = {
     mouse-button-modifier = "<Alt>";
     num-workspaces = 6;
-    workspace-names = [
-      "α"
-      "β"
-      "γ"
-      "δ"
-      "ε"
-      "ϛ"
-    ];
+    workspace-names = [ "α" "β" "γ" "δ" "ε" "ϛ" ];
   };
 
   "org/gnome/evince/default" = {
@@ -106,6 +90,7 @@
 
     favorite-apps = [
       "firefox.desktop"
+      "thunderbird.desktop"
       #
       "org.telegram.desktop.desktop"
       #
@@ -137,6 +122,7 @@
   "org/gnome/shell/extensions/auto-move-windows" = {
     application-list = [
       "firefox.desktop:1"
+      "thunderbird.desktop:1"
       "org.telegram.desktop.desktop:2"
       "vesktop.desktop:3"
       "page.kramo.Cartridges.desktop:4"

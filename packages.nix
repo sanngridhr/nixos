@@ -33,10 +33,12 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "pnpm-10.29.2"
-  ];
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      inputs.millennium.overlays.default
+    ];
+  };
 
   programs =
     let
@@ -48,9 +50,9 @@
       enabled = [
         "evince"
         "firefox"
-        "geary"
         "gpaste"
         "htop"
+        "thunderbird"
         "xwayland"
         "zoom-us"
       ];
@@ -82,6 +84,8 @@
             ls = "eza -F -Ghl --git --icons";
             mkdir = "mkdir -pv";
             mv = "mv -v";
+            npi = "nix profile install -v";
+            npr = "nix profile remove -v";
             nrs = "nixos-rebuild switch --sudo --log-format multiline-with-logs";
             q = "exit";
             rm = "trash-put -v";
@@ -120,7 +124,6 @@
           prefix=${globalVariables.xdgDataHome}/npm
           cache=${globalVariables.xdgCacheHome}/npm
           init-module=${globalVariables.xdgConfigHome}/npm/config/npm-init.js
-          tmp=/tmp/npm
         '';
         };
         starship = {
@@ -154,6 +157,7 @@
         };
         steam = {
           enable = true;
+          package = pkgs.millennium-steam;
           presence = {
             enable = true;
             steamApiKeyFile = "/ssdata/private/secrets/steam-presence/steam";
@@ -172,6 +176,7 @@
             docker.docker
             esbenp.prettier-vscode
             github.vscode-github-actions
+            leonardssh.vscord
             ms-python.mypy-type-checker
             ms-python.python
             ms-python.vscode-pylance
@@ -219,9 +224,10 @@
         ];
 
         devPackages = [
-          unstable.code-cursor
           emacs-pgtk
+          gcc
           gnumake
+          kubectl
           nil
           nodejs
           python314
@@ -271,6 +277,10 @@
             mdwtools      # pandoc org-to-pdf
             unicode-math  #
             xcolor        #
+
+            capt-of #
+            ulem    # emacs org-to-pdf
+            wrapfig #
           ]
         );
 

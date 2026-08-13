@@ -7,6 +7,9 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    millennium.inputs.nixpkgs.follows = "nixpkgs";
+    
     steam-presence.url = "github:JustTemmie/steam-presence";
     steam-presence.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,7 +20,7 @@
       nixos-hardware = inputs.nixos-hardware.nixosModules;
 
       globalVariables = rec {
-        background = ./static/wallpapers/HGnNzSOakAAvk1U.jpg;
+        background = ./static/wallpapers/Caio_Calazans_-_Algae_Bloom_-_Sorcery_TCG.jpg;
         _home = "/home/orest";
         xdgCacheHome = "${_home}/.cache";
         xdgConfigHome = "${_home}/.config";

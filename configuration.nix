@@ -43,12 +43,14 @@
       NPM_CONFIG_INIT_MODULE = "${XDG_CONFIG_HOME}/npm/config/npm-init.js";
 
       XDG_DATA_HOME = globalVariables.xdgDataHome;
+      CARGO_HOME="${XDG_DATA_HOME}/cargo";
       DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
       GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
       SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
       WINEPREFIX = "${XDG_DATA_HOME}/wine";
 
       XDG_STATE_HOME = globalVariables.xdgStateHome;
+      NODE_REPL_HISTORY="${XDG_STATE_HOME}/node_repl_history";
       PYTHON_HISTORY="${XDG_STATE_HOME}/python_history";
 
       NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
