@@ -4,7 +4,8 @@
 # expects). Rendered to JSON separately for both light and dark palettes
 # by default.nix, so this file is the single source of truth for *which*
 # semantic color each UI element uses -- edit here, not in the JSON.
-themeType: p: {
+themeType: p:
+{
   name = "Flexoki";
   type = themeType; # "light" or "dark"
 
@@ -15,6 +16,12 @@ themeType: p: {
     "editor.lineHighlightBackground" = p.bg_2;
     "editor.selectionBackground" = p.tx + p.selectionAlpha;
     "editor.selectionHighlightBackground" = p.tx + p.selectionAlpha;
+    "editor.wordHighlightBackground" = p.ui_3 + p.wordHighlightAlpha;
+    "editor.wordHighlightBorder" = p.tx_2;
+    "editor.wordHighlightStrongBackground" = p.ui_3 + p.wordHighlightStrongAlpha;
+    "editor.wordHighlightStrongBorder" = p.tx_2;
+    "editor.wordHighlightTextBackground" = p.ui_3 + p.wordHighlightAlpha;
+    "editor.wordHighlightTextBorder" = p.tx_2;
     "editor.findMatchBackground" = p.ye_2;
     "editor.findMatchHighlightBackground" = p.ye_2 + "cc";
     "editor.findRangeHighlightBackground" = p.bg_2;
@@ -34,6 +41,8 @@ themeType: p: {
     "editorInlayHint.typeBackground" = p.ui_2;
     "editorInlayHint.typeForeground" = p.tx;
     "editorWhitespace.foreground" = p.ui_3;
+    "editorWatermark.foreground" = p.tx_3;
+    "icon.foreground" = p.tx_2;
     "breadcrumb.background" = p.bg;
     "breadcrumb.foreground" = p.tx_2;
     "breadcrumb.focusForeground" = p.tx;
@@ -54,7 +63,7 @@ themeType: p: {
     "gitDecoration.modifiedResourceForeground" = p.ye;
     "gitDecoration.deletedResourceForeground" = p.re;
     "gitDecoration.untrackedResourceForeground" = p.gr;
-    "gitDecoration.ignoredResourceForeground" = p.ui_3;
+    "gitDecoration.ignoredResourceForeground" = p.tx_3;
     "gitDecoration.conflictingResourceForeground" = p.or;
     "gitDecoration.stageModifiedResourceForeground" = p.ye;
     "gitDecoration.stageDeletedResourceForeground" = p.re;
@@ -192,7 +201,7 @@ themeType: p: {
 
   tokenColors = [
     { name = "plain"; scope = [ "source" "support.type.property-name.css" ]; settings = { foreground = p.tx; }; }
-    { name = "classes"; scope = [ "entity.name.type.class" ]; settings = { foreground = p.or; }; }
+    { name = "classes"; scope = [ "entity.name.type.class" ]; settings = { foreground = p.or_2; }; }
     { name = "interfaces"; scope = [ "entity.name.type.interface" "entity.name.type" ]; settings = { foreground = p.ye; }; }
     { name = "structs"; scope = [ "entity.name.type.struct" ]; settings = { foreground = p.or; }; }
     { name = "enums"; scope = [ "entity.name.type.enum" ]; settings = { foreground = p.or; }; }
@@ -200,11 +209,11 @@ themeType: p: {
     { name = "methods"; scope = [ "entity.name.function.method" "meta.function.method" ]; settings = { foreground = p.gr; }; }
     { name = "functions"; scope = [ "entity.name.function" "support.function" "meta.function-call.generic" ]; settings = { foreground = p.or; fontStyle = "bold"; }; }
     { name = "variables"; scope = [ "variable" "meta.variable" "variable.other.object.property" ]; settings = { foreground = p.tx; }; }
-    { name = "variablesOther"; scope = [ "variable.other.object" "variable.other.readwrite.alias" ]; settings = { foreground = p.gr; }; }
-    { name = "globalVariables"; scope = [ "variable.other.global" "variable.language.this" ]; settings = { foreground = p.ma; }; }
+    { name = "variablesOther"; scope = [ "variable.other.object" "variable.other.readwrite.alias" ]; settings = { foreground = p.gr_2; }; }
+    { name = "globalVariables"; scope = [ "variable.other.global" "variable.language.this" ]; settings = { foreground = p.ma_2; }; }
     { name = "localVariables"; scope = [ "variable.other.local" ]; settings = { foreground = p.ui; }; }
     { name = "parameters"; scope = [ "variable.parameter" "meta.parameter" ]; settings = { foreground = p.tx; }; }
-    { name = "properties"; scope = [ "variable.other.property" "meta.property" ]; settings = { foreground = p.bl; }; }
+    { name = "properties"; scope = [ "variable.other.property" "meta.property" ]; settings = { foreground = p.bl_2; }; }
     { name = "strings"; scope = [ "string" "string.other.link" "markup.inline.raw.string.markdown" ]; settings = { foreground = p.cy; }; }
     { name = "stringEscapeSequences"; scope = [ "constant.character.escape" "constant.other.placeholder" ]; settings = { foreground = p.tx; }; }
     { name = "keywords"; scope = [ "keyword" ]; settings = { foreground = p.gr; }; }

@@ -42,8 +42,7 @@
           };
         }
       ];
-    in
-    {
+    in {
       nixosConfigurations = {
         GLaDOS = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs globalVariables; };

@@ -28,6 +28,9 @@
 
     # hex alpha suffix for selection highlight (theme-specific opacity)
     selectionAlpha = "44";
+    # hex alpha suffixes for word/symbol occurrence highlight (read vs write access)
+    wordHighlightAlpha = "aa";
+    wordHighlightStrongAlpha = "cc";
   };
 
   dark = {
@@ -51,5 +54,7 @@
     ma = "#CE5D97"; ma_2 = "#A02F6F";
 
     selectionAlpha = "33";
+    wordHighlightAlpha = "aa";
+    wordHighlightStrongAlpha = "cc";
   };
 }
