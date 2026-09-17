@@ -94,7 +94,7 @@
       #
       "org.telegram.desktop.desktop"
       #
-      "vesktop.desktop"
+      "discord.desktop"
       #
       "page.kramo.Cartridges.desktop"
       "steam.desktop"
@@ -124,6 +124,7 @@
       "firefox.desktop:1"
       "thunderbird.desktop:1"
       "org.telegram.desktop.desktop:2"
+      "discord.desktop:3"
       "vesktop.desktop:3"
       "page.kramo.Cartridges.desktop:4"
       "steam.desktop:4"

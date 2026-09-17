@@ -36,15 +36,14 @@
     };
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      inputs.millennium.overlays.default
-    ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   programs =
     let
+      pkgsMillennium = import inputs.nixpkgs-millennium {
+        system = pkgs.stdenv.hostPlatform.system;
+        config.allowUnfree = true;
+      };
       vscodeUnpack = ''
         runHook preUnpack
         cp -r $src/* .
@@ -160,7 +159,7 @@
         };
         steam = {
           enable = true;
-          package = pkgs.millennium-steam;
+          package = pkgsMillennium.steamWithMillennium;
           presence = {
             enable = true;
             steamApiKeyFile = "/ssdata/private/secrets/steam-presence/steam";
@@ -200,7 +199,7 @@
           ];
         };
       } enabled;
-
+  
   environment = {
     systemPackages =
       with pkgs;
@@ -229,8 +228,10 @@
         devPackages = [
           emacs-pgtk
           gcc
+          ghc
           gnumake
           kubectl
+          opencode
           nil
           nodejs
           python314
@@ -249,6 +250,7 @@
           baobab
           celluloid
           dconf-editor
+          (discord.override { withVencord = true; })
           eog
           file-roller
           foliate
@@ -261,9 +263,8 @@
           nautilus
           nicotine-plus
           rhythmbox
-          unstable.telegram-desktop
           transmission_4-gtk
-          vesktop
+          unstable.telegram-desktop
         ];
 
         hunspell' = hunspell.withDicts (
@@ -281,9 +282,11 @@
             unicode-math  #
             xcolor        #
 
-            capt-of #
-            ulem    # emacs org-to-pdf
-            wrapfig #
+            bookmark #
+            capt-of  #
+            geometry # emacs org-to-pdf
+            ulem     #
+            wrapfig  #
           ]
         );
 

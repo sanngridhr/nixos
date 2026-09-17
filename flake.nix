@@ -3,12 +3,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-millennium.url = "github:NixOS/nixpkgs/pull/538226/head";
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-    millennium.inputs.nixpkgs.follows = "nixpkgs";
     
     steam-presence.url = "github:JustTemmie/steam-presence";
     steam-presence.inputs.nixpkgs.follows = "nixpkgs";

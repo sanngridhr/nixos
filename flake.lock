@@ -39,46 +39,6 @@
         "type": "github"
       }
     },
-    "millennium": {
-      "inputs": {
-        "millennium-src": "millennium-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "packages/nix",
-        "lastModified": 1786390927,
-        "narHash": "sha256-rG9VwNR5bZIOzjYRjuY0SRqfx37spn0QQywPgITszQY=",
-        "owner": "SteamClientHomebrew",
-        "repo": "Millennium",
-        "rev": "816514f939ce8696ae8262b4e0c2123f593db08c",
-        "type": "github"
-      },
-      "original": {
-        "dir": "packages/nix",
-        "owner": "SteamClientHomebrew",
-        "repo": "Millennium",
-        "type": "github"
-      }
-    },
-    "millennium-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1783268941,
-        "narHash": "sha256-MJLJ0I48HXgfOpISTAbDMYMUdWj9A6M+jGQz4uAvwyw=",
-        "owner": "SteamClientHomebrew",
-        "repo": "Millennium",
-        "rev": "f37f05bdbd4727d873a1ad83ce72d062ef9a0c48",
-        "type": "github"
-      },
-      "original": {
-        "owner": "SteamClientHomebrew",
-        "repo": "Millennium",
-        "rev": "f37f05bdbd4727d873a1ad83ce72d062ef9a0c48",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -108,6 +68,22 @@
       "original": {
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+      }
+    },
+    "nixpkgs-millennium": {
+      "locked": {
+        "lastModified": 1786996545,
+        "narHash": "sha256-Tg5Afb8wa3T8qA4jbbQJR4pvLudR2SogBmdgsPkHjCU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "69b7dec4b171b0a0920b74fbfc34119322773704",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/538226/head",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs-unstable": {
@@ -145,9 +121,9 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "millennium": "millennium",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-millennium": "nixpkgs-millennium",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "steam-presence": "steam-presence"
       }

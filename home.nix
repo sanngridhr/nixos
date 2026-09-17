@@ -74,8 +74,8 @@
         ./static/startup-sound/startup-sound.desktop
         "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ] ++ (map mkEntry [
+        "discord"
         "firefox"
-        "vesktop"
         "steam"
       ]);
   };
