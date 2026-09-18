@@ -70,15 +70,27 @@
         unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}";
         mkEntry = entry: "${pkgs.${entry}}/share/applications/${entry}.desktop";
       in
-      [
-        ./static/startup-sound/startup-sound.desktop
-        "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
-      ] ++ (map mkEntry [
-        "discord"
-        "firefox"
-        "steam"
-      ]);
+        [
+          ./static/startup-sound/startup-sound.desktop
+          "${unstable.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
+        ] ++ (map mkEntry [
+          "discord"
+          "firefox"
+          "steam"
+        ]);
   };
+
+  xdg.dataFile."Steam/steamui/skins/flexoki-dark".source =
+    (import ./static/flexoki-millennium {
+      inherit pkgs;
+      palette = import ./static/flexoki-vscode/palette.nix;
+    }).dark;
+
+  xdg.dataFile."Steam/steamui/skins/flexoki-light".source =
+    (import ./static/flexoki-millennium {
+      inherit pkgs;
+      palette = import ./static/flexoki-vscode/palette.nix;
+    }).light;
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
 }
