@@ -1,5 +1,5 @@
 # Flexoki color palette (https://stephango.com/flexoki), keyed by the
-# semantic names used in theme-template.nix. Change a hex here and it
+# semantic names used in vscode/theme-template.nix. Change a hex here and it
 # propagates to every place that name is used in both themes.
 #
 # Note: Nix attrset keys can't contain "-", so semantic names like

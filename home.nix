@@ -81,16 +81,10 @@
   };
 
   xdg.dataFile."Steam/steamui/skins/flexoki-dark".source =
-    (import ./static/flexoki-millennium {
-      inherit pkgs;
-      palette = import ./static/flexoki-vscode/palette.nix;
-    }).dark;
+    (import ./static/flexoki/millennium { inherit pkgs; }).dark;
 
   xdg.dataFile."Steam/steamui/skins/flexoki-light".source =
-    (import ./static/flexoki-millennium {
-      inherit pkgs;
-      palette = import ./static/flexoki-vscode/palette.nix;
-    }).light;
+    (import ./static/flexoki/millennium { inherit pkgs; }).light;
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };
 }
