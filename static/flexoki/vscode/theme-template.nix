@@ -1,5 +1,5 @@
 # Flexoki VS Code theme template.
-# Takes a palette attrset `p` (see palette.nix) and produces the full
+# Takes a palette attrset `p` (see ../palette.nix) and produces the full
 # theme-file attrset (matching the "colors"/"tokenColors" schema VS Code
 # expects). Rendered to JSON separately for both light and dark palettes
 # by default.nix, so this file is the single source of truth for *which*

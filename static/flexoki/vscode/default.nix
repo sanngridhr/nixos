@@ -3,10 +3,10 @@
 # Flexoki-Dark-color-theme.json at Nix evaluation/build time.
 #
 # Usage (e.g. in packages.nix):
-#   src = import ./static/flexoki-vscode { inherit pkgs; };
+#   src = import ./static/flexoki/vscode { inherit pkgs; };
 { pkgs }:
 let
-  palette = import ./palette.nix;
+  palette = import ../palette.nix;
   theme = import ./theme-template.nix;
 
   lightTheme = theme "light" palette.light;

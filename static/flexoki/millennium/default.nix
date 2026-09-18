@@ -1,23 +1,19 @@
 ## default.nix — Millennium Steam theme, generated from the shared Flexoki palette.
 ##
-## Mirrors the flexoki-vscode build: palette.nix stays the single source of
+## Mirrors the vscode build: ../palette.nix stays the single source of
 ## truth, this just projects it into Millennium's skin.json + CSS shape
 ## instead of VS Code's theme JSON. Same builtins.toJSON + runCommand
 ## pattern, no build tooling.
 ##
-## `palette` is NOT imported from a hardcoded path here — pass it in from
-## wherever your flexoki-vscode palette.nix actually lives, e.g.:
+## Usage (e.g. in home.nix):
 ##
-##   (import ./static/millennium-flexoki {
-##     inherit pkgs;
-##     palette = import ./static/flexoki-vscode/palette.nix;
-##   })
+##   (import ./static/flexoki/millennium { inherit pkgs; }).dark
 ##
 ## Result is { dark = <derivation>; light = <derivation>; } — each a full
 ## skin folder. Wire each one up separately, e.g. via home-manager:
 ##
 ##   xdg.dataFile."Steam/steamui/skins/flexoki-dark".source =
-##     (import ./static/millennium-flexoki { inherit pkgs palette; }).dark;
+##     (import ./static/flexoki/millennium { inherit pkgs; }).dark;
 ##
 ## Confirm the real skins path for steamWithMillennium on your machine
 ## first — the ~/.steam/steam/steamui/skins path in Millennium's own docs
@@ -26,9 +22,9 @@
 {
   pkgs,
   lib ? pkgs.lib,
-  palette,
 }:
 let
+  palette = import ../palette.nix;
   mkRootVars = import ./root-vars.nix { inherit lib; };
   mkManifest = import ./skin-manifest.nix;
   mkWindowCss = import ./window-css.nix;
