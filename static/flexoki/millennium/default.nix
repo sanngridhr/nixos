@@ -12,12 +12,12 @@
 ## Result is { dark = <derivation>; light = <derivation>; } — each a full
 ## skin folder. Wire each one up separately, e.g. via home-manager:
 ##
-##   xdg.dataFile."Steam/steamui/skins/flexoki-dark".source =
+##   xdg.dataFile."Steam/millennium/themes/flexoki-dark".source =
 ##     (import ./static/flexoki/millennium { inherit pkgs; }).dark;
 ##
-## Confirm the real skins path for steamWithMillennium on your machine
-## first — the ~/.steam/steam/steamui/skins path in Millennium's own docs
-## is for the tarball install, and may not match the nixpkgs package.
+## Themes live under ~/.local/share/Steam/millennium/themes on newer
+## Millennium builds (not the old ~/.steam/steam/steamui/skins path from
+## the tarball-install docs).
 
 {
   pkgs,
@@ -41,17 +41,7 @@ let
         description = "Flexoki (${variant}) for Steam, generated from the shared palette.";
       };
 
-      webkitCss = ''
-        :root {
-        ${rootVars}
-        }
-
-        /* webkit.css — global overrides.
-         * TODO: real selectors from live Steam inspection (see window-css.nix).
-         */
-      '';
-
-      windowCss = window: mkWindowCss { inherit rootVars window; };
+      windowCss = window: mkWindowCss { inherit rootVars window variant palette; };
     in
     pkgs.runCommand "millennium-flexoki-${variant}" { } ''
             mkdir -p "$out"
@@ -61,7 +51,7 @@ let
       EOF
 
             cat > "$out/webkit.css" <<'EOF'
-      ${webkitCss}
+      ${windowCss "webkit"}
       EOF
 
             cat > "$out/libraryroot.custom.css" <<'EOF'

@@ -80,10 +80,10 @@
         ]);
   };
 
-  xdg.dataFile."Steam/steamui/skins/flexoki-dark".source =
+  xdg.dataFile."Steam/millennium/themes/flexoki-dark".source =
     (import ./static/flexoki/millennium { inherit pkgs; }).dark;
 
-  xdg.dataFile."Steam/steamui/skins/flexoki-light".source =
+  xdg.dataFile."Steam/millennium/themes/flexoki-light".source =
     (import ./static/flexoki/millennium { inherit pkgs; }).light;
 
   dconf.settings = import ./dconf.nix { inherit lib globalVariables; };

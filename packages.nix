@@ -231,7 +231,7 @@
           ghc
           gnumake
           kubectl
-          opencode
+          unstable.opencode
           nil
           nodejs
           python314
