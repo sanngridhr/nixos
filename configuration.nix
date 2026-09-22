@@ -64,11 +64,9 @@
     keyboard.qmk.enable = true;
   };
 
-  i18n = let
-    mkUtfLocale = (locale: locale + ".UTF-8/UTF-8");
-   in{
-    defaultLocale = "uk_UA.UTF-8";
-    extraLocales = map mkUtfLocale [ "en_GB" "de_DE" ];
+  i18n = {
+    defaultLocale = "de_DE.UTF-8";
+    extraLocales = [ "en_GB.UTF-8/UTF-8" ];
 
     inputMethod = {
       enable = true;

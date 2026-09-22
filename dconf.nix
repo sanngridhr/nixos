@@ -95,6 +95,7 @@
       "org.telegram.desktop.desktop"
       #
       "discord.desktop"
+      "vesktop.desktop"
       #
       "page.kramo.Cartridges.desktop"
       "steam.desktop"

@@ -250,7 +250,6 @@
           baobab
           celluloid
           dconf-editor
-          (discord.override { withVencord = true; })
           eog
           file-roller
           foliate
@@ -265,10 +264,12 @@
           rhythmbox
           transmission_4-gtk
           unstable.telegram-desktop
+          vesktop
         ];
 
         hunspell' = hunspell.withDicts (
           ds: with ds; [
+            de_DE
             en_GB-ise
             uk_UA
           ]
