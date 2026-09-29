@@ -40,7 +40,7 @@
 
   programs =
     let
-      pkgsMillennium = import inputs.nixpkgs-millennium {
+      unstable = import inputs.nixpkgs-unstable {
         system = pkgs.stdenv.hostPlatform.system;
         config.allowUnfree = true;
       };
@@ -159,7 +159,7 @@
         };
         steam = {
           enable = true;
-          package = pkgsMillennium.steamWithMillennium;
+          package = unstable.steam;
           presence = {
             enable = true;
             steamApiKeyFile = "/ssdata/private/secrets/steam-presence/steam";
