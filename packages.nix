@@ -68,6 +68,7 @@
           export HISTFILE=$XDG_STATE_HOME/bash/bashhist
           export HISTCONTROL=ignorespace:erasedups
           export HISTSIZE=10000
+          complete -o bashdefault -o default cargo
           fumbbl() {
             nix-shell -p 'python3 openjdk8 adwaita-icon-theme adoptopenjdk-icedtea-web' \\
             --run "python3 /data/build/fumbbl/launch.py \"$1\""
@@ -182,6 +183,7 @@
             ms-python.mypy-type-checker
             ms-python.python
             ms-python.vscode-pylance
+            rust-lang.rust-analyzer
             tamasfe.even-better-toml
             vscodevim.vim
             (pkgs.vscode-utils.buildVscodeExtension {
@@ -238,6 +240,10 @@
           ruff
         ];
 
+        gameDevPackages = [
+          godot
+        ];
+
         gnomePackages = with gnomeExtensions; [
           appindicator
           auto-move-windows
@@ -253,7 +259,7 @@
           eog
           file-roller
           foliate
-          unstable.ghostty
+          ghostty
           gimp
           gnome-calculator
           gnome-tweaks
@@ -264,7 +270,7 @@
           rhythmbox
           transmission_4-gtk
           unstable.telegram-desktop
-          vesktop
+          unstable.vesktop
         ];
 
         hunspell' = hunspell.withDicts (
@@ -296,6 +302,7 @@
           consolePackages
           desktopPackages
           devPackages
+          gameDevPackages
           gnomePackages
           programPackages
         ]
