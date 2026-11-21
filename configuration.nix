@@ -26,7 +26,6 @@
 
   environment = {
     sessionVariables = rec {
-      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
       MANPAGER = "batman";
       NIXOS_OZONE_WL = 1;
       XCURSOR_THEME = "Posy_Cursor";

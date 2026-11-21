@@ -102,7 +102,6 @@
       #
       "code.desktop"
       "codium.desktop"
-      "emacs.desktop"
       "pycharm-professional.desktop"
       "writer.desktop"
       #
@@ -110,9 +109,10 @@
       "transmission-gtk.desktop"
       #
       "Alacritty.desktop"
+      "emacs.desktop"
       "com.mitchellh.ghostty.desktop"
-      "org.gnome.Calculator.desktop"
       "org.gnome.Nautilus.desktop"
+      "qalculate-gtk.desktop"
     ];
   };
 

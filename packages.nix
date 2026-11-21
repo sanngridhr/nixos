@@ -122,6 +122,13 @@
           withRuby = false;
           withPython3 = false;
         };
+        nix-ld = {
+          enable = true;
+          libraries = with pkgs; [
+            gcc
+            unstable.gcc
+          ];
+        };
         npm = {
           npmrc = ''
           prefix=${globalVariables.xdgDataHome}/npm
@@ -228,20 +235,17 @@
         ];
 
         devPackages = [
+          deno
           emacs-pgtk
-          gcc
           ghc
           gnumake
+          godot
           kubectl
-          unstable.opencode
           nil
           nodejs
           python314
           ruff
-        ];
-
-        gameDevPackages = [
-          godot
+          unstable.opencode
         ];
 
         gnomePackages = with gnomeExtensions; [
@@ -261,12 +265,12 @@
           foliate
           ghostty
           gimp
-          gnome-calculator
           gnome-tweaks
           inkscape
           libreoffice
           nautilus
           nicotine-plus
+          qalculate-gtk
           rhythmbox
           transmission_4-gtk
           unstable.telegram-desktop
@@ -302,7 +306,6 @@
           consolePackages
           desktopPackages
           devPackages
-          gameDevPackages
           gnomePackages
           programPackages
         ]
